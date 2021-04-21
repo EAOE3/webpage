@@ -9,6 +9,10 @@
     if (typeof window.ethereum !== 'undefined') {
          document.write('MetaMask is installed!');
       ethereum.request({ method: 'eth_requestAccounts' });
+      var net = web3.eth.net.getId([callback]);
+      if(net != 56){
+      document.write('nono');}
+      else{document.write('yesyes');}
        }
        else{
          document.write('MetaMask is not installed!');
