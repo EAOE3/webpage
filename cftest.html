@@ -8,6 +8,7 @@
     // var web3 = new Web3(Web3.giveProvider);
     if (typeof window.ethereum !== 'undefined') {
          document.write('MetaMask is installed!');
+      ethereum.request({ method: 'eth_requestAccounts' });
        }
        else{
          document.write('MetaMask is not installed!');
