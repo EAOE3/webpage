@@ -9,7 +9,7 @@
     if (typeof window.ethereum !== 'undefined') {
          document.write('MetaMask is installed!');
       ethereum.request({ method: 'eth_requestAccounts' });
-      var net = ethereum.eth.net.getId([callback]);
+      var net = window.ethereum.id();
       document.write(net);
       document.write('\nLol');
     }
