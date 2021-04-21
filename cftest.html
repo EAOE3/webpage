@@ -5,8 +5,8 @@
 <body>
   <script>
 
-     var web3 = new Web3(Web3.giveProvider);
-    if (typeof window.ethereum !== 'undefined') {
+     //var web3 = new Web3(Web3.giveProvider);
+    if (typeof web3 !== 'undefined') {
          document.write('MetaMask is installed!');
       ethereum.request({ method: 'eth_requestAccounts' });
       var net = web3.eth.net.getId([callback]);
