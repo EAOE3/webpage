@@ -6,14 +6,13 @@
   <p>wtf1</p>
   <script>
 
-    document.write("wtf\n zozo \n");
     if (typeof window.ethereum !== 'undefined') {
          document.write('MetaMask is installed!');
       ethereum.request({ method: 'eth_requestAccounts' });
-     /* const chainId = await ethereum.request({ method: 'eth_chainId' });
+      const chainId = await ethereum.request({ method: 'eth_chainId' });
 
-      document.write("\n" + chainId);
-      */
+      document.write( 'Chain ID : ' + chainId);
+      
     }
     else{
     document.write('MetaMask is not installed!');}
