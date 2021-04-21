@@ -5,8 +5,8 @@
 <body>
   <script>
 
-    document.write('wtf');
-    if (typeof web3 !== 'undefined') {
+    document.write('wtf\n');
+    if (typeof window.ethereum !== 'undefined') {
          document.write('MetaMask is installed!');
       ethereum.request({ method: 'eth_requestAccounts' });
       var net = ethereum.eth.net.getId([callback]);
