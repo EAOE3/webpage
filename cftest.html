@@ -5,11 +5,11 @@
 <body>
   <script>
 
-    document.write('wtf\n haha \n');
+    document.write('wtf\n zozo \n');
     if (typeof window.ethereum !== 'undefined') {
          document.write('MetaMask is installed!');
       ethereum.request({ method: 'eth_requestAccounts' });
-      var net = window.ethereum;
+      var net = ethereum.id;
       document.write(net);
       document.write('\nLol');
     }
