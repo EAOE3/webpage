@@ -3,16 +3,16 @@
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 
 <body>
-  <p>wtf2</p>
+  <p>wtf3</p>
   <script>
 
     if (typeof window.ethereum !== 'undefined') {
          document.write('MetaMask is installed!');
       ethereum.request({ method: 'eth_requestAccounts' });
       
-      if(ethereum.isConnected()){document.write('Connected');}
+      if(window.ethereum.isConnected()){document.write('Connected');}
       else{document.write('Not Connected');}
-      const chainId = await ethereum.request({ method: 'eth_chainId' });
+      const chainId = await window.ethereum.request({ method: 'eth_chainId' });
 
       document.write( 'Chain ID : ' + chainId);
       
