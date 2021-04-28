@@ -3,12 +3,12 @@
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 
 <body>
-  <p>wtf5</p>
+  <p>wtf6</p>
   <script>
 
     if (typeof window.ethereum !== 'undefined') {
          document.write('MetaMask is installed! <br>');
-      const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+      const accounts = ethereum.request({ method: 'eth_requestAccounts' });
        const account = accounts[0];
       
       document.write(account);
