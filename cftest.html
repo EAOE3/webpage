@@ -9,13 +9,6 @@
     if (typeof window.ethereum !== 'undefined') {
          document.write('MetaMask is installed!');
       ethereum.request({ method: 'eth_requestAccounts' });
-      
-      if(window.ethereum.isConnected()){document.write('Connected');}
-      else{document.write('Not Connected');}
-      const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-
-      document.write( 'Chain ID : ' + chainId);
-      
     }
     else{
     document.write('MetaMask is not installed!');}
