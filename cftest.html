@@ -9,7 +9,7 @@
       if (typeof window.ethereum !== 'undefined') {
   console.log('MetaMask is installed!');
     window.web3 = new Web3(window.web3.currentProvider);
-    //window.ethereum.enable();
+    window.ethereum.enable();
   }
   else{
 
@@ -982,7 +982,7 @@
     var b ;
 
     async function getAccounts(){
-      return ethereum.request({ method: 'eth_requestAccounts' });
+      return window.ethereum.request({ method: 'eth_requestAccounts' });
     }
 
     var accounts ;
