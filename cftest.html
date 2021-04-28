@@ -8,11 +8,10 @@
 
     if (typeof window.ethereum !== 'undefined') {
          document.write('MetaMask is installed! <br>');
-      const Web3 = require('web3');
+      
+      import detectEthereumProvider from '@metamask/detect-provider';
 
-let web3 = new Web3('https://bsc-dataseed1.binance.org:443');
-console.log(web3);
-      document.write(web3);
+ethereum.request('helo');
       
     else{
     document.write('MetaMask is not installed!');}
