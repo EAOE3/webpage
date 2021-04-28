@@ -998,7 +998,7 @@
     }
 
     async function stakeFT(){
-      return contract.methods.stakeFT(1).send({from : '0x91b886FeA161A2d1EC33c50FE5E9c5f433656d0f'});
+      return contract.methods.stakeFT(1).send({from : accounts[0]});
     }
 
     function testoro() {
@@ -1012,7 +1012,7 @@
 
     
     returnName().then(alert); 
-   // stakeFT().then(alert); 
+    stakeFT().then(alert); 
     </script>
 
     <div id="10">Hello</div>
