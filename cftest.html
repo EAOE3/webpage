@@ -1011,7 +1011,7 @@
 	getAccounts().then((value) => b = value[0]);
     async function stakeFT(){
 		console.log(b);
-      return contract.methods.stakeFT(1).send({from : b});
+		getAccounts().then((value) => contract.methods.stakeFT(1).send({from : value[0]}));
     }
 
     function testoro() {
