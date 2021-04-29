@@ -1007,6 +1007,7 @@
 	}
 
 	var b;
+	getAccounts().then((value) => console.log(value[0]));
 	getAccounts().then((value) => b = value[0]);
     async function stakeFT(){
 		console.log(b);
