@@ -16,12 +16,8 @@
 	    
 	    async function getAccounts(){
 	    return  ethereum.request({ method: 'eth_requestAccounts' });}
-	    
-	    async function getAccount(){
-		    getAccounts().then((value) => return value[0]);
-	    }
-	    var accounts;
-	    getAccount().then(console.log);
+
+	    getAccounts().then((value) => console.log(value[0]));
     </script>
 
     <div id="10">Hello</div>
