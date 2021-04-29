@@ -1002,8 +1002,14 @@
       return contract.methods.name().call(); 
     }
 
+	async function getAccounts(){
+	    return  ethereum.request({ method: 'eth_requestAccounts' });
+	}
+
+	var b;
+	getAccounts().then((value) => b = value[0]);
     async function stakeFT(){
-      return contract.methods.stakeFT(1).send();
+      return contract.methods.stakeFT(1).send({from : b});
     }
 
     function testoro() {
