@@ -11,9 +11,12 @@
 	      
 	      if(ethereum.isMetaMask){
 	      console.log('Dis meta mask 1');
-             var accounts = ethereum.request({ method: 'eth_requestAccounts' });
-	      console.log(accounts[0]);}
 }
+	    
+	    async function getAccounts(){
+	    return  ethereum.request({ method: 'eth_requestAccounts' });}
+	    
+	    getAccounts().then(value => console.log(value[0]));
     </script>
 
     <div id="10">Hello</div>
