@@ -1007,8 +1007,8 @@
 
 
     async function stakeFT(){
-		var amount = parseInt(document.getElementById("ft").value * 10000000000);
-		getAccounts().then((value) => contract.methods.stakeFT(amount).send({from : value[0]}));
+		var amount = parseFloat(document.getElementById("ft").value) * 10000000000;
+		getAccounts().then((value) => contract.methods.stakeFT(parseInt(amount)).send({from : value[0]}));
     }
 
     function testoro() {
