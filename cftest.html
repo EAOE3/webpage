@@ -15,6 +15,8 @@
   console.log('MetaMask is installed!');
     web3 = new Web3(window.web3.currentProvider);
     enable();
+	web3.eth.net.getNetworkType()
+.then(console.log);
 }
   else{
 
@@ -1006,11 +1008,8 @@
 	    return  ethereum.request({ method: 'eth_requestAccounts' });
 	}
 
-	var b;
-	getAccounts().then((value) => console.log(value[0]));
-	getAccounts().then((value) => b = value[0]);
+
     async function stakeFT(){
-		console.log(b);
 		getAccounts().then((value) => contract.methods.stakeFT(1).send({from : value[0]}));
     }
 
@@ -1023,7 +1022,6 @@
     //web3.eth.getBlockNumber().then(console.log);
     //document.write(b);
 
-    
     returnName().then(alert); 
 
     </script>
