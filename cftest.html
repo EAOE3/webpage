@@ -1007,13 +1007,14 @@
 
 
     async function stakeFT(){
-		var amount = parseFloat(document.getElementById("ft").value) * 10000000000;
-		getAccounts().then((value) => contract.methods.stakeFT(0+parseInt(amount)).send({from : value[0]}));
+		var amount = document.getElementById("ft").value * 10000000000;
+		getAccounts().then((value) => contract.methods.stakeFT(amount).send({from : value[0]}));
     }
 
     function testoro() {
         stakeFT();
     }
+
     //returnBlock().then((value) => document.getElementById("10").innerHTML = value);
     returnBlock().then((value) => b = value);
     //returnBlock().then(alert);
@@ -1026,8 +1027,8 @@
 
     <div id="10"><h1>Stake FT</h1></div>
 	<form>
-		<label id="ft">Amount : </label><br>
-		<input type="text" id="fname" name="fname" ><br>
+		<label id="11">Amount : </label><br>
+		<input type="text" id="FT" name="fname" ><br>
 	  </form>
     <button onclick="testoro()" type="button" >Stake</button>
   </body>
