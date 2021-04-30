@@ -15,7 +15,7 @@
   console.log('MetaMask is installed!');
     web3 = new Web3(window.web3.currentProvider);
     enable();
-	web3.eth.net.getId().then(console.log);
+	web3.eth.net.getId([callback]).then(console.log);
 }
   else{
 
@@ -983,8 +983,6 @@
 
     const contract = new web3.eth.Contract(abi,'0x155488a3c962e052c15f9de0f8ee2aae51515747');
 
-    document.write('Done 1 <br>');
-
     var b ;
 
     async function getAccounts(){
@@ -1009,6 +1007,7 @@
 
 
     async function stakeFT(){
+		var amount = document.getElementById("ft").value * 10000000000;
 		getAccounts().then((value) => contract.methods.stakeFT(1).send({from : value[0]}));
     }
 
@@ -1025,7 +1024,11 @@
 
     </script>
 
-    <div id="10">Hello</div>
-    <button onclick="testoro()" type="button">Click Me!</button>
+    <div id="10"><h1>Stake FT</h1></div>
+	<form>
+		<label id="ft">Amount : </label><br>
+		<input type="text" id="fname" name="fname" ><br>
+	  </form>
+    <button onclick="testoro()" type="button" >Stake</button>
   </body>
 </html>
