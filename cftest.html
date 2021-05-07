@@ -37,11 +37,11 @@ var accounts;
 async function enable(){
         return ethereum.enable();
       }
-      
+
 if (typeof window.ethereum !== 'undefined') {
   console.log('MetaMask is installed!');
     web3 = new Web3(window.web3.currentProvider);
-    enable();
+    //enable();
 	web3.eth.net.getId().then(console.log);
   getAccounts().then(variable => accounts = variable);
 }
