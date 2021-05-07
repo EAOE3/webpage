@@ -31,6 +31,8 @@
   <script type="text/javascript" src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
   <script>
 
+let web3;
+
 if (typeof window.ethereum !== 'undefined') {
   console.log('MetaMask is installed!');
     web3 = new Web3(window.web3.currentProvider);
