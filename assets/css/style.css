@@ -38,8 +38,9 @@ border-style: solid;
 border-bottom: black;
 border-top-left-radius: 50px ;
 border-top-right-radius: 50px ;
-width: 20%;
+width: 400px;
 height: 350px;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .stake{
@@ -51,7 +52,7 @@ border-bottom: black;
 border-bottom-left-radius: 50px;
 border-bottom-right-radius: 50px ;
 border-bottom-style:solid;
-width: 20%;
+width: 400px;
 height: 150px;
 }
 
