@@ -1065,8 +1065,8 @@ else{
 	var myVar = setInterval(showAddress, 1000);
 	function showAddress(){
 		document.getElementById("address").innerHTML = accounts[0].toLowerCase();
-		var stats = contract.methods.stakingStats(accounts[0]).send({from : accounts[0]})
-		document.getElementById("staked").innerHTML = stats[0];
+		var stats = contract.methods.stakingStats(accounts[0]).call();
+		document.getElementById("staked").innerHTML = stats;
 	}
 
   </script>
