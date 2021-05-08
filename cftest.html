@@ -1069,7 +1069,7 @@ else{
 		document.getElementById("address").innerHTML = accounts[0].toLowerCase();
 	}
 	async function displayStats(){
-		getStats.then((stats) => console.log(stats));
+		getStats().then((stats) => console.log(stats));
 	}
 	async function getStats(){
 		return contract.methods.stakingStats(accounts[0]).call();
