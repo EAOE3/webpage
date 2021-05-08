@@ -1,0 +1,56 @@
+body{
+    background-color: #101010;
+    color: gray;
+    font-family: Arial, Helvetica, sans-serif;
+}
+input{
+    border-color: orange;
+    color : orange;
+    background-color: #101010;
+}
+
+  .staking{
+  margin : auto; 
+  background-color: #101010;
+  border: orange;
+  border-style: solid;
+  border-bottom: orange;
+  border-top-left-radius: 50px ;
+  border-top-right-radius: 50px ;
+  width: 400px;
+  height: 350px;
+  font-family: Arial, Helvetica, sans-serif;
+  
+  }
+  
+  .stake{
+    margin : auto; 
+  background-color: #101010;
+  border: orange;
+  border-style: solid;
+  border-bottom: borangelack;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px ;
+  border-bottom-style:solid;
+  width: 400px;
+  height: 150px;
+  }
+  
+  .staked{
+    background-color: red;
+    width: 49%;
+    height: 50px;
+    margin: auto;
+    float: left;
+    border-radius: 50px;
+  }
+  
+  .rewards{
+    background-color: red;
+    width: 49%;
+    height: 50px;
+    margin: auto;
+    float: right;
+    border-radius: 50px;
+  }
+  
