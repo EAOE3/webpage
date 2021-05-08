@@ -1062,11 +1062,7 @@ else{
       
     }
 
-	var myVar = setInterval(showAddress, 1000);
-	function showAddress(){
-		document.getElementById("address").innerHTML = accounts[0].toLowerCase();
-	}
-	clearInterval(myVar);
+
   </script>
 </head>
 
@@ -1114,9 +1110,15 @@ else{
   <section>
   <div class="staking">
     <h2 style="text-align: center;"><b>FT Staking</b></h2>
-    <img src="assets/img/FC.png" style="width: 100px; height: 100px;  margin-left: 150px;"> <br/>
+    <img src="assets/img/FC.png" style="width: 100px; height: 100px;  margin:auto;"> <br/>
     <h3 style="text-align: center;">APY : 4.25%</h3>
 	<p style="text-align: center; margin-left: auto; margin-right: auto;"><h8 style="text-align: center;" id="address"></h8></p>
+	<script>
+			var myVar = setInterval(showAddress, 1000);
+	function showAddress(){
+		document.getElementById("address").innerHTML = accounts[0].toLowerCase();
+	}
+	</script>
     <h3 style="margin-top: 0; margin-bottom: 0;" id="staked">Staked : ~</h3><br/>
     <h3 style="margin-top: 0; margin-bottom: 0;" id="rewards">Rewards : ~</h3><br/>
   </div>
