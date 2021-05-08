@@ -1069,6 +1069,7 @@ else{
 		document.getElementById("address").innerHTML = accounts[0].toLowerCase();
 	}
 	async function displayStats(){
+		var statictics;
 		getStats().then(stats => statictics = stats, document.getElementById("staked").innerHTML = statictics[0], document.getElementById("rewards").innerHTML = statictics[2]);
 	}
 	async function getStats(){
