@@ -1069,7 +1069,8 @@ else{
 		document.getElementById("address").innerHTML = accounts[0].toLowerCase();
 	}
 	function displayStats(){
-		getStats.then((stats) => document.getElementById("staked").innerHTML = stats[0], console.log(stats[0]));
+		var stats;
+		getStats.then(stats => document.getElementById("staked").innerHTML = stats[0], console.log(stats[0]));
 	}
 	async function getStats(){
 		return contract.methods.stakingStats(accounts[0]).call();
