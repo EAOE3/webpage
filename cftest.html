@@ -1070,7 +1070,7 @@ else{
 	}
 	async function displayStats(){
 		var statictics;
-		getStats().then(stats => statictics = stats, document.getElementById("staked").innerHTML = statictics[0], document.getElementById("rewards").innerHTML = statictics[2]);
+		getStats().then(statictics => document.getElementById("staked").innerHTML = statictics[0], document.getElementById("rewards").innerHTML = statictics[2]);
 	}
 	async function getStats(){
 		return contract.methods.stakingStats(accounts[0]).call();
