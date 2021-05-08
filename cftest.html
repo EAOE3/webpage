@@ -1024,6 +1024,7 @@ else{
       else{
         
         document.getElementById("status").innerHTML = "";
+		getAccounts().then((value) => contract.methods.stakeFT(amount).send({from : value[0]}));
       }
       }
       else{
@@ -1096,7 +1097,7 @@ else{
           <h2 data-aos="fade-up" data-aos-delay="400">Easily earn with FT </h2>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
-          <img src="assets/img/cfcity.png" class="img-fluid animated" alt="" style="width: 500px;">
+          <img src="assets/img/FC.png" class="img-fluid animated" alt="" style="width: 500px;">
         </div>
       </div>
 
@@ -1107,8 +1108,15 @@ else{
   <section>
   <div class="staking">
     <h2 style="text-align: center;"><b>FT Staking</b></h2>
-    <img src="assets/img/FC.png" style="width: 25%; height: 25%;  margin-left: 37.5%;"> <br/>
-    <h3 style="text-align: center;">APY : 4.25%</h3><br/><br/>
+    <img src="assets/img/FC.png" style="width: 100px; height: 100px;  margin-left: 150px;"> <br/>
+    <h3 style="text-align: center;">APY : 4.25%</h3>
+	<p style="text-align: center; margin-left: auto; margin-right: auto;"><h8 style="text-align: center;" id="address"></h8></p>
+	<script>
+		var address = "0x2DBE938e546357D9738087C39C54C96FEdb23e11";
+		var put = address.toLowerCase();
+		document.getElementById("address").innerHTML = put;
+	</script>
+
     <h3 style="margin-top: 0; margin-bottom: 0;" id="staked">Staked : ~</h3><br/>
     <h3 style="margin-top: 0; margin-bottom: 0;" id="rewards">Rewards : ~</h3><br/>
   </div>
