@@ -1008,7 +1008,7 @@ else{
 		"type": "function"
 	}
 ];
-
+  const contract = new web3.eth.Contract(abi,'0x155488a3c962e052c15f9de0f8ee2aae51515747');
     async function getAccounts(){
       return window.ethereum.request({ method: 'eth_requestAccounts' });
     }
