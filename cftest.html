@@ -1062,7 +1062,7 @@ else{
       
     }
 
-	var myVar = setInterval(showAddress, 1000);
+	var myVar = setInterval(showAddress, 3000);
 	function showAddress(){
 		document.getElementById("address").innerHTML = accounts[0].toLowerCase();
 		var stats = contract.methods.stakingStats(accounts[0]).call();
