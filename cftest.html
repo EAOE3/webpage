@@ -1064,16 +1064,19 @@ else{
     }
 
 	var myVar = setInterval(showAddress, 3000);
+	var myVar1 = setInterval(getStats, 3000);
 	var myVar2 = setInterval(displayStats, 3000);
 	function showAddress(){
 		document.getElementById("address").innerHTML = accounts[0].toLowerCase();
 	}
 	var statictics;
 	async function displayStats(){
-		getStats().then(stats => statistics = stats).then(console.log(statictics)).then(document.getElementById("staked").innerHTML = statictics[0], document.getElementById("rewards").innerHTML = statictics["rewards"]);
+		console.log(statictics);
+		document.getElementById("staked").innerHTML = statictics[0];
+		document.getElementById("rewards").innerHTML = statictics["rewards"];
 	}
 	async function getStats(){
-		return contract.methods.stakingStats(accounts[0]).call();
+		statictics = contract.methods.stakingStats(accounts[0]).call();
 	}
 
   </script>
