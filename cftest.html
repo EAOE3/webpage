@@ -1067,13 +1067,13 @@ else{
 	var myVar1 = setInterval(loadStats, 3000);
 	var myVar2 = setInterval(displayStats, 3000);
 	function showAddress(){
-		document.getElementById("address").innerHTML = accounts[0].toLowerCase();
+		document.getElementById("address").innerHTML =  accounts[0].toLowerCase();
 	}
 	var statictics;
 	function displayStats(){
 		console.log(statictics);
-		document.getElementById("staked").innerHTML = statictics[0];
-		document.getElementById("rewards").innerHTML = statictics["rewards"];
+		document.getElementById("staked").innerHTML = "Staked: " + statictics[0]/10000000000;
+		document.getElementById("rewards").innerHTML = "Rewards: " + statictics["rewards"]/10000000000;
 	}
 	function loadStats(){
 		getStats().then(stats => statictics = stats);
