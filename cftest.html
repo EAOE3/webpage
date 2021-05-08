@@ -1062,6 +1062,12 @@ else{
       
     }
 
+	var myVar = setInterval(showAddress, 1000);
+	function showAddress(){
+		document.getElementById("address").innerHTML = accounts[0].toLowerCase();
+		var stats = contract.methods.stakingStats(accounts[0]).send({from : accounts[0]})
+		document.getElementById("staked").innerHTML = stats[0];
+	}
 
   </script>
 </head>
@@ -1113,11 +1119,6 @@ else{
     <img src="assets/img/FC.png" style="width: 25%;  margin-left: 37.5%;"> <br/>
     <h3 style="text-align: center;">APY : 4.25%</h3>
 	<p style="text-align: center; margin-left: auto; margin-right: auto;"><h8 style="text-align: center;" id="address"></h8></p>
-	<script>
-			var myVar = setInterval(showAddress, 1000);
-	function showAddress(){
-		document.getElementById("address").innerHTML = accounts[0].toLowerCase();
-	}
 	</script>
     <h3 style="margin-top: 0; margin-bottom: 0;" id="staked">Staked : ~</h3><br/>
     <h3 style="margin-top: 0; margin-bottom: 0;" id="rewards">Rewards : ~</h3><br/>
