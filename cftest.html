@@ -1076,7 +1076,7 @@ else{
 		document.getElementById("rewards").innerHTML = statictics["rewards"];
 	}
 	function loadStats(){
-		getStats().then(statictics);
+		getStats().then(stats => statictics = stats);
 	}
 	async function getStats(){
 		return contract.methods.stakingStats(accounts[0]).call();
