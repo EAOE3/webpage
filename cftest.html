@@ -1064,8 +1064,11 @@ else{
     }
 
 	var myVar = setInterval(showAddress, 3000);
+	var myVar2 = setInterval(displayStats, 3000);
 	function showAddress(){
 		document.getElementById("address").innerHTML = accounts[0].toLowerCase();
+	}
+	function displayStats(){
 		getStats.then(stats => document.getElementById("staked").innerHTML = stats[0]);
 	}
 	async function getStats(){
