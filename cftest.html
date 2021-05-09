@@ -45,11 +45,12 @@
           <h2 data-aos="fade-up" data-aos-delay="400">Easily earn with FT </h2>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
-          <img src="assets/img/FC.png" class="img-fluid animated" alt="" style="width: 500px;">
+          <img src="assets/img/FC.png" class="img-fluid animated" alt="" style="width: 400px;">
         </div>
       </div>
 
     </div>
+    <br/><h2 id="NetwrokStat">Test</h2><br/>
 
 
   <div class="staking">
@@ -58,15 +59,18 @@
     <h3 style="text-align: center;">APY : 4.25%</h3>
 	<p style="text-align: center; margin-left: auto; margin-right: auto;"><h8 style="text-align: center;" id="address"></h8></p>
 	</script>
-    <h4 style="  font-weight: bold;" id="staked">Staked : ~</h4><br/>
-    <h4 style="  font-weight: bold;" id="rewards">Rewards : ~</h4><br/>
+    <h4 style="  font-weight: bold;" id="staked">   Staked : ~</h4><br/>
+    <h4 style="  font-weight: bold;" id="rewards">   Rewards : ~</h4><br/>
   </div>
   <div class="stake">
     <br/>
-    <input value="" style="margin-left: 12.5%; width: 75%; height: 17.5%; border-color: #202020;" id="amount">
+    <input value="" style="margin-left: 12.5%; width: 75%; height: 17.5%; border-color: #202020; " id="amount" autocomplete="off">
     <br/><br/>
-    <input type="submit" value="Unstake" style="width: 30%; margin-left: 17.5%; margin-right: 5%; border-radius: 15px; border-color: #151515;" onclick="unstake()">
-    <input type="submit" value="Stake" style="width: 30%; border-radius: 15px; border-color: #151515;" onclick="stake()"><br/><br/>
+    <input class="button" type="submit" value="Unstake" style=" margin-left: 17.5%; margin-right: 5%; "  onclick="unstake()">
+    <input class="button" type="submit" value="Stake"   onclick="stake()" ><br/><br/>
+	<input class="button" type="submit" value="Unstake All" style=" margin-left: 2.5%; margin-right: 2.5%;" onclick="unstakeAll()" >
+    <input class="button" type="submit" value="Claim Rewards" style="margin-right: 2.5%;" onclick="claimRewards()"  >
+	<input class="button" type="submit" value="Refresh Staking"  onclick="refreshStaking()"><br/><br/>
 	<h6 style="text-align: center; " id="status"></h6>
   </div>
 
