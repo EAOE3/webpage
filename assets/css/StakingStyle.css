@@ -1,20 +1,19 @@
 body{
-    background-color: #101010;
+    background-color: #252525;
     color: gray;
     font-family: Arial, Helvetica, sans-serif;
 }
 input{
-    border-color: orange;
-    color : orange;
+    color : white;
     background-color: #101010;
 }
 
   .staking{
   margin : auto; 
-  background-color: #101010;
-  border: orange;
+  background-color: #151515;
+  border: #202020;
   border-style: solid;
-  border-bottom: orange;
+  border-bottom: blue;
   border-top-left-radius: 50px ;
   border-top-right-radius: 50px ;
   width: 400px;
@@ -25,8 +24,8 @@ input{
   
   .stake{
     margin : auto; 
-  background-color: #101010;
-  border: orange;
+  background-color: #151515;
+  border: #202020;
   border-style: solid;
   border-bottom: borangelack;
   border-bottom-left-radius: 50px;
