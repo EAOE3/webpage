@@ -1041,6 +1041,8 @@ else{
     }
     function processUntaking(stats, amount){
         var staked = stats[0] + stats["rewards"];
+		document.write(stats[0]);
+		document.write(stats["rewards"]);
 		document.write(staked);
         if(amount <= staked){
             getAccounts().then(value => contract.methods.unstakeFT(amount).send({from : value[0]}));}
