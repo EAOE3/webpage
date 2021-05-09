@@ -1040,7 +1040,7 @@ else{
       
     }
     function processUntaking(stats, amount){
-        var staked = stats[0] + stats["rewards"];
+        var staked = parseInt(stats[0]) + parseInt(stats["rewards"]);
 		document.write(stats[0] + "<br/>");
 		document.write(stats["rewards"]+ "<br/>");
 		document.write(staked+ "<br/>");
