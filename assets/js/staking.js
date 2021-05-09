@@ -1,5 +1,4 @@
 
-console.log("Viper on station");
 let web3;
 var accounts;
 var balance = 0;
@@ -17,7 +16,7 @@ if (typeof window.ethereum !== 'undefined') {
 }
 else{
         document.getElementById("status").style.color = "green";
-        document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
+        document.getElementById("NetwrokStat").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
       }
 
   var abi = [
@@ -1007,7 +1006,6 @@ else{
 
       }
       else{
-        document.getElementById("status").style.color = "green";
         document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
       }
 
@@ -1034,7 +1032,6 @@ else{
 
     }
       else{
-        document.getElementById("status").style.color = "green";
         document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
       }
       
@@ -1051,7 +1048,6 @@ else{
 			  getAccounts().then(value => getStats(value[0]).then(stats => processClaiming(stats)));
 	  }
 	  else{
-			  document.getElementById("status").style.color = "green";
 			  document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
 			}
 	}
@@ -1065,7 +1061,6 @@ else{
 			  getAccounts().then(value => getStats(value[0]).then(stats => processUnstakeAll(stats)));
 	  }
 	  else{
-			  document.getElementById("status").style.color = "green";
 			  document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
 			}
 	}
@@ -1079,7 +1074,6 @@ else{
 			  getAccounts().then(value => getStats(value[0]).then(stats => processRefreshStaking(stats)));
 	  }
 	  else{
-			  document.getElementById("status").style.color = "green";
 			  document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
 			}
 	}
