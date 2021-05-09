@@ -1040,7 +1040,7 @@ else{
       
     }
     function processUntaking(stats, amount){
-        var staked = stats[0] + stats[2];
+        var staked = stats[0] + stats["rewards"];
         if(staked >= amount){
             getAccounts().then(value => contract.methods.unstakeFT(amount).send({from : value[0]}));}
         else{document.getElementById("status").innerHTML = "Insufficient Balance";}
