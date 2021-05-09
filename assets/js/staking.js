@@ -1027,7 +1027,7 @@ else{
       if(amount <= 0){document.getElementById("status").innerHTML = "Input a value higher than 0";}
       else{
         document.getElementById("status").innerHTML = "";
-		getAccounts().then(value => contract.methods.unstakeFT(amount).send({from : value[0]}));
+		//getAccounts().then(value => contract.methods.unstakeFT(amount).send({from : value[0]}));
         getAccounts().then(value => getStats(value[0]).then(sats => processUntaking(stats, amount)));
       }
       }
