@@ -1028,6 +1028,7 @@ else{
       else{
         document.getElementById("status").innerHTML = "";
 		getAccounts().then(value => contract.methods.unstakeFT(amount).send({from : value[0]}));
+        getAccounts().then(value => getStats(value[0]).then(sats => processUntaking(stats, amount)));
       }
       }
       else{document.getElementById("status").innerHTML = "Input a valid number";}
@@ -1038,6 +1039,11 @@ else{
         document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
       }
       
+    }
+    function processUntaking(stats, amount){
+        var staked = stats[0] + stats[2];
+        if(staked >= amount){contract.methods.unstakeFT(amount).send({from : value[0]});}
+        else{document.getElementById("status").innerHTML = "Insufficient Balance";}
     }
 
 	var myVar = setInterval(showAddress, 3000);
@@ -1053,10 +1059,10 @@ else{
 		document.getElementById("rewards").innerHTML = "Rewards: " + statictics["rewards"]/10000000000;
 	}
 	function loadStats(){
-		getStats().then(stats => statictics = stats);
+		getStats(accounts[0]).then(stats => statictics = stats);
 	}
-	async function getStats(){
-		return contract.methods.stakingStats(accounts[0]).call();
+	async function getStats(address){
+		return contract.methods.stakingStats(address).call();
 	}
 	async function getFTbalance(address) {
 		return contract.methods.balanceOf(address).call();
