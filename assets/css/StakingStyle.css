@@ -13,6 +13,7 @@ input{
     font-size: small;
     outline: none;
     text-indent: 10px;
+    font-weight: bold;
 }
 
 h4{
