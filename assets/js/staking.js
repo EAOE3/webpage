@@ -1,5 +1,4 @@
 
-console.log("Viper on station");
 let web3;
 var accounts;
 var balance = 0;
