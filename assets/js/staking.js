@@ -1052,7 +1052,7 @@ else{
 	}
 	}
 	function processClaiming(stats) {
-		if(stats["rewards"] > 0){contract.methods.unstakeFT(stats["rewatds"]).send({from : accounts[0]});}
+		if(stats["rewards"] > 0){contract.methods.unstakeFT(stats["rewards"]).send({from : accounts[0]});}
 		else{document.getElementById("status").innerHTML = "No rewards to claim";}
 	}
 
