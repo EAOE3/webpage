@@ -1099,7 +1099,7 @@ else{
 		getStats(accounts[0]).then(stats => statictics = stats);
 	}
 	function displayID(){
-		getID.then(ID => processID(ID));
+		getID().then(ID => processID(ID));
 	}
 
 
