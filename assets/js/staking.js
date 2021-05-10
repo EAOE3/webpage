@@ -1083,10 +1083,10 @@ else{
 		else{document.getElementById("status").innerHTML = "No FT to re-stake";}
 	}
 
-	var myVar = setInterval(showAddress, 3000);
-	var myVar1 = setInterval(loadStats, 6000);
-	var myVar2 = setInterval(displayStats, 6000);
-	var myVar3 = setInterval(displayID, 10000);
+	var myVar = setInterval(displayID, 10000);
+	var myVar0 = setInterval(showAddress, 3000);
+	var myVar1 = setInterval(loadStats, 3000);
+	var myVar2 = setInterval(displayStats, 3000);
 	function showAddress(){
 		document.getElementById("address").innerHTML =  accounts[0].toLowerCase();
 	}
