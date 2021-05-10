@@ -12,7 +12,10 @@ if (typeof window.ethereum !== 'undefined') {
     web3 = new Web3(window.web3.currentProvider);
     //enable();
 	web3.eth.net.getId().then(console.log);
-  getAccounts().then(variable => accounts = variable);
+	getMetMaskAccounts().then(variable => accounts = variable);
+}
+else{
+	document.write("WTFFFFFFFFF");
 }
 
 
@@ -979,7 +982,6 @@ if (typeof window.ethereum !== 'undefined') {
 	  return window.ethereum.request({ method: 'eth_requestAccounts' });
   }
     async function getAccounts(){
-		document.getElementById("status").innerHTML = "Allow access to your meta mask address"
 		getMetMaskAccounts().then(variable => accounts = variable);
       return accounts;
     }
