@@ -1,98 +1,1123 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+let web3;
+var accounts;
+var balance = 0;
 
-  <title>Family Token Staking</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+async function enable(){
+        return ethereum.enable();
+      }
 
-  <!-- Favicons -->
-  <link href="assets/img/FC.png" rel="icon" type="image/png">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/StakingStyle.css" rel="stylesheet">
-
-  <script type="text/javascript" src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
-  <script type="text/javascript" src=".\assets\js\staking.js"></script>
-</head>
-
-<body>
+if (typeof window.ethereum !== 'undefined') {
+  console.log('MetaMask is installed!');
+    web3 = new Web3(window.web3.currentProvider);
+    //enable();
+	web3.eth.net.getId().then(console.log);
+	getMetMaskAccounts().then(variable => accounts = variable);
+}
+else{
+	document.write("WTFFFFFFFFF");
+}
 
 
-  <!-- ======= Hero Section ======= -->
+  var abi = [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "Approval",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "staker",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "Stake",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "Transfer",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "unstaker",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "unstakingamount",
+				"type": "uint256"
+			}
+		],
+		"name": "Unstake",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			}
+		],
+		"name": "allowance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			}
+		],
+		"name": "allowances",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "allowanceAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "stakingAllowence",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "fullAllowence",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "approve",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "burn",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "burnFor",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "currentSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "decimals",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "subtractedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "decreaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient1",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient2",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient3",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient4",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient5",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient6",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient7",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient8",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient9",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient10",
+				"type": "address"
+			}
+		],
+		"name": "decupleTransfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "recipient1",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount1",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient2",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount2",
+				"type": "uint256"
+			}
+		],
+		"name": "doubleTransfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "giveFullAllowance",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "giveStakingAllowance",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "addedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "increaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "recipient1",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount1",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient2",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount2",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient3",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount3",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient4",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount4",
+				"type": "uint256"
+			}
+		],
+		"name": "quadrupleTransfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "recipient1",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount1",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient2",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount2",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient3",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount3",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient4",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount4",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient5",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount5",
+				"type": "uint256"
+			}
+		],
+		"name": "quintupleTransfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient1",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount1",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient2",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount2",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient3",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount3",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient4",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount4",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient5",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount5",
+				"type": "uint256"
+			}
+		],
+		"name": "quintupleTransferFrom",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "refreshStaking",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "refreshStakingFor",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "removeFullAllowance",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "removeStakingAllowance",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "stakeFT",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "stakeFTfor",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "stakingStats",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "stakingAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "stakingBlock",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "rewards",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "recipient",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transferFrom",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "recipient1",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount1",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient2",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount2",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient3",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount3",
+				"type": "uint256"
+			}
+		],
+		"name": "tripleTransfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "unstakeAll",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "unstakeAllfor",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "unstakeFT",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "unstakeFTfor",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+];
+  const contract = new web3.eth.Contract(abi,'0x155488a3c962e052c15f9de0f8ee2aae51515747');
+  async function getMetMaskAccounts(){
+	  return window.ethereum.request({ method: 'eth_requestAccounts' });
+  }
+    async function getAccounts(){
+		getMetMaskAccounts().then(variable => accounts = variable);
+      return accounts;
+    }
+
+    function stake(){
+      if (typeof window.ethereum !== 'undefined') {
+      var amount = document.getElementById("amount").value;
+      amount *= 10000000000;
+      amount = parseInt(amount);
+      if(Number.isInteger(amount)){
+      if(amount <= 0){
+        document.getElementById("status").style.color = "red";
+        document.getElementById("status").innerHTML = "Input a value higher than 0";}
+      else{
+
+        getAccounts().then(value => getFTbalance(value[0], document.getElementById("status").innerHTML = "").then(balance => processStaking(balance, amount)));
+      }
+      }
+      else{
+        document.getElementById("status").style.color = "red";
+        document.getElementById("status").innerHTML = "Input a valid number";
+      }
+
+      }
+      else{
+        document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank">MetaMask <\a> to use this product';
+      }
+
+      
+    }
+    function processStaking(balance, amount){
+        if(balance >= amount){contract.methods.stakeFT(amount).send({from : value[0]});}
+        else{document.getElementById("status").innerHTML = "Insufficient Balance";}
+    }
+
+    function unstake(){
+      if (typeof window.ethereum !== 'undefined') {
+      var amount = document.getElementById("amount").value;
+      amount *= 10000000000;
+      amount = parseInt(amount);
+      if(Number.isInteger(amount)){
+      if(amount <= 0){document.getElementById("status").innerHTML = "Input a value higher than 0";}
+      else{
+
+        getAccounts().then(value => getStats(value[0]).then(stats => processUntaking(stats, amount)));
+      }
+      }
+      else{document.getElementById("status").innerHTML = "Input a valid number";}
+
+    }
+      else{
+        document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank">MetaMask <\a> to use this product';
+      }
+      
+    }
+    function processUntaking(stats, amount){
+        var staked = parseInt(stats[0]) + parseInt(stats["rewards"]);
+        if(amount <= staked){
+            getAccounts().then(value => contract.methods.unstakeFT(amount).send({from : value[0]}));}
+        else{document.getElementById("status").innerHTML = "Insufficient Balance";}
+    }
+
+	function claimRewards() {
+		if (typeof window.ethereum !== 'undefined') {
+			  getAccounts().then(value => getStats(value[0]).then(stats => processClaiming(stats)));
+	  }
+	  else{
+		document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank">MetaMask <\a> to use this product';
+	}
+	}
+	function processClaiming(stats) {
+		if(stats["rewards"] > 0){contract.methods.unstakeFT(stats["rewatds"]).send({from : value[0]});}
+		else{document.getElementById("status").innerHTML = "No rewards to claim";}
+	}
+
+	function unstakeAll() {
+		if (typeof window.ethereum !== 'undefined') {
+			  getAccounts().then(value => getStats(value[0]).then(stats => processUnstakeAll(stats)));
+	  }
+	  else{
+		document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank">MetaMask <\a> to use this product';
+	}
+	}
+	function processUnstakeAll(stats) {
+		if(stats[0] > 0){contract.methods.unstakeAll().send({from : value[0]});}
+		else{document.getElementById("status").innerHTML = "No FT to unstake";}
+	}
+
+	function refreshStaking() {
+		if (typeof window.ethereum !== 'undefined') {
+			  getAccounts().then(value => getStats(value[0]).then(stats => processRefreshStaking(stats)));
+	  }
+	  else{
+		document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank">MetaMask <\a> to use this product';
+	}
+	}
+	function processRefreshStaking(stats) {
+		if(stats["rewards"] > 0){contract.methods.unstakeAll().send({from : value[0]});}
+		else{document.getElementById("status").innerHTML = "No FT to re-stake";}
+	}
+
+	var myVar = setInterval(showAddress, 3000);
+	var myVar1 = setInterval(loadStats, 3000);
+	var myVar2 = setInterval(displayStats, 3000);
+	var myVar3 = setInterval(displayStats, 3000);
+	function showAddress(){
+		document.getElementById("address").innerHTML =  accounts[0].toLowerCase();
+	}
+	var statictics;
+	function displayStats(){
+		document.getElementById("staked").innerHTML = "Staked: " + statictics[0]/10000000000;
+		document.getElementById("rewards").innerHTML = "Rewards: " + statictics["rewards"]/10000000000;
+	}
+	function loadStats(){
+		getStats(accounts[0]).then(stats => statictics = stats);
+	}
+	function displayID(){
+		getID.then(ID => processID(ID));
+	}
 
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up">Family Token Staking</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">Easily earn with FT </h2>
-        </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
-          <img src="assets/img/FC.png" class="img-fluid animated" alt="" style="width: 280px;">
-        </div>
-      </div>
-      <br/><h3 id="NetwrokStat" style="text-align: center;">WTF</h3><br/>
-    </div>
-
-
-
-  <div class="staking">
-    <h2 style="text-align: center;"><b>FT Staking</b></h2>
-    <img src="assets/img/FC.png" style="width: 25%;  margin-left: 37.5%;"> <br/>
-    <h3 style="text-align: center;">APY : 4.25%</h3>
-	<p style="text-align: center; margin-left: auto; margin-right: auto;"><h8 style="text-align: center;" id="address"></h8></p>
-	</script>
-    <h4 style="  font-weight: bold;" id="staked">   Staked : ~</h4><br/>
-    <h4 style="  font-weight: bold;" id="rewards">   Rewards : ~</h4><br/>
-  </div>
-  <div class="stake">
-    <br/>
-    <input value="" style="margin-left: 12.5%; width: 75%; height: 17.5%; border-color: #202020; " id="amount" autocomplete="off">
-    <br/><br/>
-    <input class="button" type="submit" value="Unstake" style=" margin-left: 17.5%; margin-right: 5%; "  onclick="unstake()">
-    <input class="button" type="submit" value="Stake"   onclick="stake()" ><br/><br/>
-	<input class="button" type="submit" value="Unstake All" style=" margin-left: 2.5%; margin-right: 2.5%;" onclick="unstakeAll()" >
-    <input class="button" type="submit" value="Claim Rewards" style="margin-right: 2.5%;" onclick="claimRewards()"  >
-	<input class="button" type="submit" value="Restake"  onclick="refreshStaking()"><br/><br/>
-	<h6 style="text-align: center; " id="status"></h6>
-  </div>
-
-
-
-  <main id="main">
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="assets/vendor/counterup/counterup.min.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
+	async function getStats(address){
+		return contract.methods.stakingStats(address).call();
+	}
+	async function getFTbalance(address) {
+		return contract.methods.balanceOf(address).call();
+	}
+	async function getID(){
+		return web3.eth.net.getId();
+	}
+	function processID(ID){
+		if(ID != 56){
+			document.getElementById("NetwrokStat").style.color = red;
+			document.getElementById("NetwrokStat").innerHTML = "Please switch to Binance Smart Chain";
+      }
+	  else{
+		document.getElementById("NetwrokStat").innerHTML = "";
+	  }
+	}
