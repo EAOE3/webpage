@@ -15,7 +15,6 @@ if (typeof window.ethereum !== 'undefined') {
 	getMetMaskAccounts().then(variable => accounts = variable);
 }
 else{
-	document.write("WTFFFFFFFFF");
 }
 
 
