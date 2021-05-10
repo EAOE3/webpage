@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Crypto Family Token</title>
+  <title>Family Token Staking</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -26,353 +26,57 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/StakingStyle.css" rel="stylesheet">
 
+  <script type="text/javascript" src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
+  <script type="text/javascript" src=".\assets\js\staking.js"></script>
 </head>
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-
-      <div class="logo mr-auto">
-        <h1 class="text-light"><a href="index.html"><span>Crypto Family</span></a></h1>
-      </div>
-
-      <nav class="nav-menu d-none d-lg-block ms-auto mb-2 mb-lg-0">
-        <ul>
-          <li class="active"><a href="#">Token</a></li>
-          <li><a href="cfbridge.html">Bridge</a></li>
-          <li><a href="cfvault.html">Vault</a></li>
-          <li><a href="cfstaking.html" target="_blank">Staking</a></li>
-          <li><a href="index.html">Home</a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
-
-    </div>
-  </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
+
 
     <div class="container">
       <div class="row">
         <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up">Crypto Family Token</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">Store of value, staking rewards, fast and cheap transactions.All achieved in one token</h2>
+          <h1 data-aos="fade-up">Family Token Staking</h1>
+          <h2 data-aos="fade-up" data-aos-delay="400">Easily earn with FT </h2>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
-          <img src="assets/img/FC.png" class="img-fluid animated" alt="" style="width: 500px;">
+          <img src="assets/img/FC.png" class="img-fluid animated" alt="" style="width: 280px;">
         </div>
       </div>
+      <br/><h3 id="NetwrokStat" style="text-align: center;">WTF</h3><br/>
     </div>
 
-  </section><!-- End Hero -->
+
+
+  <div class="staking">
+    <h2 style="text-align: center;"><b>FT Staking</b></h2>
+    <img src="assets/img/FC.png" style="width: 25%;  margin-left: 37.5%;"> <br/>
+    <h3 style="text-align: center;">APY : 4.25%</h3>
+	<p style="text-align: center; margin-left: auto; margin-right: auto;"><h8 style="text-align: center;" id="address"></h8></p>
+	</script>
+    <h4 style="  font-weight: bold;" id="staked">   Staked : ~</h4><br/>
+    <h4 style="  font-weight: bold;" id="rewards">   Rewards : ~</h4><br/>
+  </div>
+  <div class="stake">
+    <br/>
+    <input value="" style="margin-left: 12.5%; width: 75%; height: 17.5%; border-color: #202020; " id="amount" autocomplete="off">
+    <br/><br/>
+    <input class="button" type="submit" value="Unstake" style=" margin-left: 17.5%; margin-right: 5%; "  onclick="unstake()">
+    <input class="button" type="submit" value="Stake"   onclick="stake()" ><br/><br/>
+	<input class="button" type="submit" value="Unstake All" style=" margin-left: 2.5%; margin-right: 2.5%;" onclick="unstakeAll()" >
+    <input class="button" type="submit" value="Claim Rewards" style="margin-right: 2.5%;" onclick="claimRewards()"  >
+	<input class="button" type="submit" value="Restake"  onclick="refreshStaking()"><br/><br/>
+	<h6 style="text-align: center; " id="status"></h6>
+  </div>
+
+
 
   <main id="main">
-
-    <!-- ======= About Us Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>About The Token</h2>
-        </div>
-
-        <div class="row content">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
-            <p>
-              <b>What is the Crypto Family Token (FT)?</b><br>
-              FT is a token created by the Crypto Family to achieve the goal of a token that can be used as both a store of value and a quick cheap payment and exchange method
-            </p>
-
-            <p>
-              <b>FT and the Crypto Family Bridge</b><br>
-              FT is used to acheive PoSA 'Proof of Staked Authority' and pay fees on the <a href="cfbridge.html">Crypto Family Bridge</a> to help secure the Crypto Family Bridge and all of it's transactions 
-            </p>
-            
-          </div>
-
-          <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
-
-            <p>
-              <b>FT and the Crypto Family Vault</b><br>
-              FT is the native currency to be used in the <a href="cfvault.html">Crypto Family Vault</a> project as payment method for both fees and services provided in the vault
-            </p>
-
-            <p>
-              <b>What makes FT special?</b><br>
-              Besides being the native currency to be used in the Crypto Family projects, and the token used to secure the Crypto Family Bridge, FT comes with certain features 
-              and principles that make it a true asset to rely on.
-          </p>
-
-
-          </div>
-
-
-        </div>
-
-        </div>
-    </section><!-- End About Us Section -->
-
-        <!-- ======= features Us Section ======= -->
-        <section id="about" class="about">
-          <div class="container">
-    
-            <div class="section-title" data-aos="fade-up">
-              <h2>Features And Principles of FT</h2>
-            </div>
-    
-            <div class="row content">
-              <div data-aos="fade-up" data-aos-delay="150">
-                <p>
-                  <h3>Staking</h3>
-                  Unlike many other tokens and coins that are genrated through minting, new FT can only be found through staking of FT, making the FT community and FT holders the only users capable of 
-                  finding new FT and placing it into existence, marking FT a token of its community and its community only<br> 
-                  FT is also staked on the <a href="cfbridge.html">Crypto Family Bridge</a> nodes to help ashieve PoSA 'Proof of Staked Authority' in between nodes and on the blockchains to help secure 
-                  transactions and prevent any false transactions or attacks on the Bridge 
-                </p>
-                <br>
-                <p>
-                  <h3>Anti Inflation</h3>
-                  FT is an anti inflationary token with a fixed total supply of 1,000,000 FT and an APR of 4% from staking rewards <br>
-                  At release of the FT smart contract there will be a supply of 25,000 FT with the remaining 975,000 FT waiting to be found by stakers in the next 100-1000 years
-                </p>
-                <br>
-                <p>
-                  <h3>Life Cycle</h3>
-                  FT follows the Life Cycle principle which takes care of placing FT back into circulation after it's use in the Crypto Family projects <br>
-                  When a user pays FT fees in the projects and services the Crypto Family provides, that FT is placed back into circulation rejoining the remaining FT in the line waiting to be found by the stakers <br>
-                  This feature makes sure that FT will have a never ending cycle of staking, minting, burning, and redistribution while keeping a total supply of only 1,000,000 FT  
-                </p>
-                <br>
-                <p>
-                  <h3>Cheap Multiple Transfers</h3>
-                  FT is built on top of the Binance Smart Chain which allows for instant cheap transactions, FT also supports double, triple, quadruple, quintuple and Decupletransfers to help ease
-                  transfers to multiple users and reduce the gas cost, in certain cases FT transactions have prooven to be the cheapest on the Binance Smart Chain, even cheaper than BNB transactions
-                </p>
-              </div>
-    
-    
-            </div>
-    
-            </div>
-        </section><!-- End features Us Section -->
-
-              <!-- ======= features Us Section ======= -->
-              <section id="about" class="about">
-                <div class="container">
-          
-                  <div class="section-title" data-aos="fade-up">
-                    <h2>FT's Motive</h2>
-                  </div>
-          
-                  <div class="row content">
-                    <div data-aos="fade-up" data-aos-delay="150">
-                      While the world is full with cryptos of many purposes and technologies we felt that it still lacks a coin or token that can act as a native currency that can suport many transactions 
-                      for cheap and provide a never ending life cycle of an anti inflationary token. <br><br>
-
-                      Satoshi Nakamoto's development of Bitcoin in 2009 has often been hailed as a radical development in money and currency, it introduced the world to the concept of decentralization and 
-                      anti inflation. But while Bitcoin offered the world those features it had major issues that make it hard to rely on as an asset for simple payments such as buying a coke due to it's 
-                      slow transactions and high fees, and even though Bitcoin is coded to have a limited amount of coins, it has a limited life cycle, when all Bitcoin are mined it will be very hard for 
-                      new users to benefit from Bitcoin mining and it's gonna be hard for miners to keep up their mining operations off the transaction fees which will result in many miners shutting down their mining 
-                      operations and eventually the end of the Bitcoin life cycle. <br><br> 
-
-                      Advanced block chains such as the Binance Smart Chain, Polkadot and others offer a very fast and cheap payment method that can help offer cryptos fit for simple and big exchanges, however
-                      such blockchains lack the principle of anti inflation as their production of coins is never ending. <br><br>
-                      
-                      FT aims to combine the above principles and features to offer an anti inflationary token with very fast and cheap transactions, aswell as a life cycle that hardly ends, giving the world 
-                      a token fit for holding and exchanging aswell as a never ending life cycle of staking and wealth redistribution.
-
-                    </div>
-          
-          
-                  </div>
-          
-                  </div>
-              </section><!-- End features Us Section -->  
-    <!-- ======= F.A.Q Section ======= -->
-    <section id="faq" class="faq">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Frequently Asked Questions</h2>
-        </div>
-
-        <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-5">
-            <i class="ri-question-line"></i>
-            <h4>How to get FT</h4>
-          </div>
-          <div class="col-lg-7">
-            <p>
-              FT can be found for purchase on decentralized exchanges such as <a href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x155488a3c962e052c15f9de0f8ee2aae51515747">Pancake Swap</a> and <a href="https://app.dodoex.io/exchange/0x155488A3C962E052c15F9dE0f8ee2AAe51515747-USDT?network=bsc-mainnet">DODO Swap</a>, it can also be traded p2p with other holders
-            </p>
-          </div>
-        </div>
-
-        <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-5">
-            <i class="ri-question-line"></i>
-            <h4>How to get started staking FT</h4>
-          </div>
-          <div class="col-lg-7">
-            <p>
-              After you've got your hand on some FT you can use the Crypto Family <a href="cfstaking.html">Staking  DAPP</a> to easily stake your FT using meta mask and keeping track of your rewards and funds 
-            </p>
-          </div>
-        </div>
-
-        <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-5">
-            <i class="ri-question-line"></i>
-            <h4>What happens when all FT is staked out ?</h4>
-          </div>
-          <div class="col-lg-7">
-            <p>
-              If a day comes where all FT gets staked out, stakers would still make FT from the fees paid in the Crypto Family projects
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End F.A.Q Section -->
-
-    <!-- ======= Smart Contract ======= -->
-    <section id="faq" class="faq">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>FT Smart Contract</h2>
-        </div>
-
-        <div class="row content">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
-            <p>
-              <b>FT Smart Contract Address</b><br>
-              0x815976b730e5ec205ce64c82740c8fbb94b085cb
-            </p>
-            
-          </div>
-
-          <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
-            <p>
-              <b>FT On Block Explorer</b><br>
-              <a href="https://bscscan.com/token/0x815976b730e5ec205ce64c82740c8fbb94b085cb">FT on BSCscan</a>
-            </p>
-
-
-
-          </div>
-
-
-        </div>
-
-      </div>
-    </section><!-- End Smart Contract -->    
-
-        <!-- ======= Trading ======= -->
-        <section id="faq" class="faq">
-          <div class="container">
-    
-            <div class="section-title" data-aos="fade-up">
-              <h2>FT Trading</h2>
-            </div>
-    
-            <div class="row content">
-              <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
-                <p>
-                  <b><a href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x155488a3c962e052c15f9de0f8ee2aae51515747">FT On Pancake Swap</a></b>
-                </p>
-                
-              </div>
-    
-              <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
-                <p>
-                  <b><a href="https://app.dodoex.io/exchange/0x155488A3C962E052c15F9dE0f8ee2AAe51515747-USDT?network=bsc-mainnet">FT On DODO Swap</a></b>
-                </p>
-    
-    
-    
-              </div>
-    
-    
-            </div>
-    
-          </div>
-        </section><!-- End Trading -->    
-
-    <!-- ======= Project Section ======= -->
-    <section id="prject" class="project">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Other Projects</h2>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 mt-4 mt-md-0 pointer" data-aos="fade-up" data-aos-delay="200" onclick="location.href='cfbridge.html'">
-            <div class="info p-2 border border-3 border-dark text-center h-100">
-              <h3>Crypto Family Bridge</h3>
-              <img src="assets/img/FC.png" class="" alt="" width="150" height="150">
-              <p>Linking the world of blockchains together</p>
-            </div>
-          </div>
-
-          
-          <div class="col-lg-4 col-md-6 mt-4 mt-md-0 pointer" data-aos="fade-up" data-aos-delay="200" style="visibility: hidden;">
-            <div class="info p-2 border border-3 border-dark text-center h-100">
-              <h3>Crypto Family City</h3>
-              <img src="assets/img/cfcity.png" class="" alt="" width="150" height="150">
-              <p>A city of never ending evolution and new ideas</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mt-4 mt-md-0 pointer" data-aos="fade-up" data-aos-delay="200" onclick="location.href='cfvault.html'">
-            <div class="info p-2 border border-3 border-dark text-center h-100">
-              <h3>Crypto Family Vault</h3>
-              <img src="assets/img/FC.png" class="" alt="" width="150" height="150">
-              <p>Storing cryptos made more secure than ever</p>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-    </section><!-- End Project Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Contact Us</h2>
-            <p>
-              You can get in touch with us on our Discord server and Telegram Group!
-              <br><br>
-              <a href="https://discord.gg/XQSGzkC" target="_blank"><img src="assets/img/discord.png" alt="" width="400" height="130" style="padding-left: 1%; padding-right: 1%;"></a>
-              <a href="https://t.me/joinchat/iLaqHCgNHc4xNjE0" target="_blank"><img src="assets/img/telegram.png" alt="" width="400" height="130" style="padding-left: 1%; padding-right: 1%;"></a>
-            </p>
-          </div>
-        </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <div class="row d-flex align-items-center">
-        <div class="col-lg-6 text-lg-left text-center">
-          <div class="copyright">
-            &copy; Copyright <strong>Crypto Family</strong>. All Rights Reserved
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/jquery/jquery.min.js"></script>
