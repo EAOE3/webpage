@@ -1114,7 +1114,7 @@ else{
 	}
 	function processID(ID){
 		if(ID != 56){
-			document.getElementById("status").style.color = red;
+			document.getElementById("status").style.color =  "red";
 			document.getElementById("status").innerHTML = "Please switch to Binance Smart Chain";
       }
 	  else{
