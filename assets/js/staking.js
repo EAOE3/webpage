@@ -12,7 +12,7 @@ if (typeof window.ethereum !== 'undefined') {
     web3 = new Web3(window.web3.currentProvider);
     //enable();
 	web3.eth.net.getId().then(console.log);
-  getAccounts().then(variable => accounts = variable);
+  //getAccounts().then(variable => accounts = variable);
 }
 else{
         document.getElementById("status").style.color = "green";
@@ -1006,7 +1006,7 @@ else{
 
       }
       else{
-        document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
+        document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank">MetaMask <\a> to use this product';
       }
 
       
@@ -1032,7 +1032,7 @@ else{
 
     }
       else{
-        document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
+        document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank">MetaMask <\a> to use this product';
       }
       
     }
@@ -1048,8 +1048,8 @@ else{
 			  getAccounts().then(value => getStats(value[0]).then(stats => processClaiming(stats)));
 	  }
 	  else{
-			  document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
-			}
+		document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank">MetaMask <\a> to use this product';
+	}
 	}
 	function processClaiming(stats) {
 		if(stats["rewards"] > 0){contract.methods.unstakeFT(stats["rewatds"]).send({from : value[0]});}
@@ -1061,8 +1061,8 @@ else{
 			  getAccounts().then(value => getStats(value[0]).then(stats => processUnstakeAll(stats)));
 	  }
 	  else{
-			  document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
-			}
+		document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank">MetaMask <\a> to use this product';
+	}
 	}
 	function processUnstakeAll(stats) {
 		if(stats[0] > 0){contract.methods.unstakeAll().send({from : value[0]});}
@@ -1074,8 +1074,8 @@ else{
 			  getAccounts().then(value => getStats(value[0]).then(stats => processRefreshStaking(stats)));
 	  }
 	  else{
-			  document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
-			}
+		document.getElementById("status").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank">MetaMask <\a> to use this product';
+	}
 	}
 	function processRefreshStaking(stats) {
 		if(stats["rewards"] > 0){contract.methods.unstakeAll().send({from : value[0]});}
