@@ -991,9 +991,8 @@ if (typeof window.ethereum !== 'undefined') {
       else{
         
         document.getElementById("status").innerHTML = "";
-		//var balance;
-		//getAccounts().then(value => contract.methods.stakeFT(amount).send({from : value[0]}));
-        getAccounts().then(value => getFTbalance(value[0]).then(balance => processStaking(balance, amount)));
+		document.getElementById("status").innerHTML = "Allow access to your meta mask address"
+        getAccounts().then(value => getFTbalance(value[0], document.getElementById("status").innerHTML = "").then(balance => processStaking(balance, amount)));
       }
       }
       else{
