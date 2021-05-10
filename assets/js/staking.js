@@ -1085,6 +1085,7 @@ else{
 	var myVar = setInterval(showAddress, 3000);
 	var myVar1 = setInterval(loadStats, 3000);
 	var myVar2 = setInterval(displayStats, 3000);
+	var myVar3 = setInterval(displayID, 3000);
 	function showAddress(){
 		document.getElementById("address").innerHTML =  accounts[0].toLowerCase();
 	}
@@ -1097,9 +1098,26 @@ else{
 	function loadStats(){
 		getStats(accounts[0]).then(stats => statictics = stats);
 	}
+	function displayID(){
+		getID.then(ID => processID(ID));
+	}
+
+
 	async function getStats(address){
 		return contract.methods.stakingStats(address).call();
 	}
 	async function getFTbalance(address) {
 		return contract.methods.balanceOf(address).call();
+	}
+	async function getID(){
+		return web3.eth.net.getId();
+	}
+	function processID(ID){
+		if(ID != 56){
+			document.getElementById("NetwrokStat").style.color = red;
+			document.getElementById("NetwrokStat").innerHTML = 'Please switch to Binance Smart Chain';
+      }
+	  else{
+		document.getElementById("NetwrokStat").innerHTML = '';
+	  }
 	}
