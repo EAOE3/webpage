@@ -1086,7 +1086,7 @@ else{
 	var myVar = setInterval(showAddress, 3000);
 	var myVar1 = setInterval(loadStats, 3000);
 	var myVar2 = setInterval(displayStats, 3000);
-	var myVar3 = setInterval(displayID, 3000);
+	var myVar3 = setInterval(displayID, 10000);
 	function showAddress(){
 		document.getElementById("address").innerHTML =  accounts[0].toLowerCase();
 	}
@@ -1114,10 +1114,10 @@ else{
 	}
 	function processID(ID){
 		if(ID != 56){
-			document.getElementById("NetwrokStat").style.color = red;
-			document.getElementById("NetwrokStat").innerHTML = "Please switch to Binance Smart Chain";
+			document.getElementById("status").style.color = red;
+			document.getElementById("status").innerHTML = "Please switch to Binance Smart Chain";
       }
 	  else{
-		document.getElementById("NetwrokStat").innerHTML = "";
+		document.getElementById("status").innerHTML = "";
 	  }
 	}
