@@ -1013,7 +1013,7 @@ else{
       
     }
     function processStaking(balance, amount){
-        if(balance >= amount){contract.methods.stakeFT(amount).send({from : value[0]});}
+        if(balance >= amount){contract.methods.stakeFT(amount).send({from : accounts[0]});}
         else{document.getElementById("status").innerHTML = "Insufficient Balance";}
     }
 
