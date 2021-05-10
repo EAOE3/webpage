@@ -1080,6 +1080,7 @@ if (typeof window.ethereum !== 'undefined') {
 	var myVar = setInterval(showAddress, 3000);
 	var myVar1 = setInterval(loadStats, 3000);
 	var myVar2 = setInterval(displayStats, 3000);
+	var myVar3 = setInterval(displayStats, 3000);
 	function showAddress(){
 		document.getElementById("address").innerHTML =  accounts[0].toLowerCase();
 	}
@@ -1109,9 +1110,9 @@ if (typeof window.ethereum !== 'undefined') {
 	function processID(ID){
 		if(ID != 56){
 			document.getElementById("NetwrokStat").style.color = red;
-			document.getElementById("NetwrokStat").innerHTML = 'Please switch to Binance Smart Chain';
+			document.getElementById("NetwrokStat").innerHTML = "Please switch to Binance Smart Chain";
       }
 	  else{
-		document.getElementById("NetwrokStat").innerHTML = '';
+		document.getElementById("NetwrokStat").innerHTML = "";
 	  }
 	}
