@@ -997,7 +997,7 @@ else{
         document.getElementById("status").innerHTML = "Input a value higher than 0";}
       else{
 
-        getAccounts().then(value => getFTbalance(value[0], document.getElementById("status").innerHTML = "").then(balance => processStaking(balance, amount)));
+        getAccounts().then(value => getFTbalance(value[0]).then(balance => processStaking(balance, amount)));
       }
       }
       else{
