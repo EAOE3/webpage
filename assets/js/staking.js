@@ -975,9 +975,13 @@ if (typeof window.ethereum !== 'undefined') {
 	}
 ];
   const contract = new web3.eth.Contract(abi,'0x155488a3c962e052c15f9de0f8ee2aae51515747');
+  async function getMetMaskAccounts(){
+	  return window.ethereum.request({ method: 'eth_requestAccounts' });
+  }
     async function getAccounts(){
 		document.getElementById("status").innerHTML = "Allow access to your meta mask address"
-      return window.ethereum.request({ method: 'eth_requestAccounts' });
+		getMetMaskAccounts().then(variable => accounts = variable);
+      return accounts;
     }
 
     function stake(){
@@ -1086,7 +1090,6 @@ if (typeof window.ethereum !== 'undefined') {
 	}
 	var statictics;
 	function displayStats(){
-		console.log(statictics);
 		document.getElementById("staked").innerHTML = "Staked: " + statictics[0]/10000000000;
 		document.getElementById("rewards").innerHTML = "Rewards: " + statictics["rewards"]/10000000000;
 	}
