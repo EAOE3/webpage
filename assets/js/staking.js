@@ -1084,8 +1084,8 @@ else{
 	}
 
 	var myVar = setInterval(showAddress, 3000);
-	var myVar1 = setInterval(loadStats, 3000);
-	var myVar2 = setInterval(displayStats, 3000);
+	var myVar1 = setInterval(loadStats, 6000);
+	var myVar2 = setInterval(displayStats, 6000);
 	var myVar3 = setInterval(displayID, 10000);
 	function showAddress(){
 		document.getElementById("address").innerHTML =  accounts[0].toLowerCase();
