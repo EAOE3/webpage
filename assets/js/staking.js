@@ -976,6 +976,7 @@ if (typeof window.ethereum !== 'undefined') {
 ];
   const contract = new web3.eth.Contract(abi,'0x155488a3c962e052c15f9de0f8ee2aae51515747');
     async function getAccounts(){
+		document.getElementById("status").innerHTML = "Allow access to your meta mask address"
       return window.ethereum.request({ method: 'eth_requestAccounts' });
     }
 
@@ -989,9 +990,7 @@ if (typeof window.ethereum !== 'undefined') {
         document.getElementById("status").style.color = "red";
         document.getElementById("status").innerHTML = "Input a value higher than 0";}
       else{
-        
-        document.getElementById("status").innerHTML = "";
-		document.getElementById("status").innerHTML = "Allow access to your meta mask address"
+
         getAccounts().then(value => getFTbalance(value[0], document.getElementById("status").innerHTML = "").then(balance => processStaking(balance, amount)));
       }
       }
@@ -1081,7 +1080,6 @@ if (typeof window.ethereum !== 'undefined') {
 	var myVar = setInterval(showAddress, 3000);
 	var myVar1 = setInterval(loadStats, 3000);
 	var myVar2 = setInterval(displayStats, 3000);
-	var myVar3 = setInterval(displayID, 3000);
 	function showAddress(){
 		document.getElementById("address").innerHTML =  accounts[0].toLowerCase();
 	}
