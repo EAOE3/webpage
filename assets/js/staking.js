@@ -14,10 +14,7 @@ if (typeof window.ethereum !== 'undefined') {
 	web3.eth.net.getId().then(console.log);
   //getAccounts().then(variable => accounts = variable);
 }
-else{
-        document.getElementById("status").style.color = "green";
-        document.getElementById("NetwrokStat").innerHTML = 'Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask <\a> to use this product';
-      }
+
 
   var abi = [
 	{
