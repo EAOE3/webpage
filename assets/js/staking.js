@@ -1040,7 +1040,7 @@ else{
     function processUntaking(stats, amount){
         var staked = parseInt(stats[0]) + parseInt(stats["rewards"]);
         if(amount <= staked){
-            getAccounts().then(value => contract.methods.unstakeFT(amount).send({from : value[0]}));}
+            getAccounts().then(value => contract.methods.unstakeFT(amount).send({from : accounts[0]}));}
         else{document.getElementById("status").innerHTML = "Insufficient Balance";}
     }
 
@@ -1053,7 +1053,7 @@ else{
 	}
 	}
 	function processClaiming(stats) {
-		if(stats["rewards"] > 0){contract.methods.unstakeFT(stats["rewatds"]).send({from : value[0]});}
+		if(stats["rewards"] > 0){contract.methods.unstakeFT(stats["rewatds"]).send({from : accounts[0]});}
 		else{document.getElementById("status").innerHTML = "No rewards to claim";}
 	}
 
@@ -1066,7 +1066,7 @@ else{
 	}
 	}
 	function processUnstakeAll(stats) {
-		if(stats[0] > 0){contract.methods.unstakeAll().send({from : value[0]});}
+		if(stats[0] > 0){contract.methods.unstakeAll().send({from : accounts[0]});}
 		else{document.getElementById("status").innerHTML = "No FT to unstake";}
 	}
 
@@ -1079,7 +1079,7 @@ else{
 	}
 	}
 	function processRefreshStaking(stats) {
-		if(stats["rewards"] > 0){contract.methods.unstakeAll().send({from : value[0]});}
+		if(stats["rewards"] > 0){contract.methods.unstakeAll().send({from : accounts[0]});}
 		else{document.getElementById("status").innerHTML = "No FT to re-stake";}
 	}
 
