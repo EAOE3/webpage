@@ -1078,7 +1078,7 @@ else{
 	}
 	}
 	function processRefreshStaking(stats) {
-		if(stats["rewards"] > 0){contract.methods.unstakeAll().send({from : accounts[0]});}
+		if(stats["rewards"] > 0){contract.methods.refreshStaking().send({from : accounts[0]});}
 		else{document.getElementById("status").innerHTML = "No FT to re-stake";}
 	}
 
