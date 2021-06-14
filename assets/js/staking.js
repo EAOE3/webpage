@@ -1115,7 +1115,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 	var myVar0 = setInterval(showAddress, 3000);
 	var myVar1 = setInterval(loadStats, 3000);
 	var myVar2 = setInterval(displayStats, 3000);
-	var myVar3 = setInterval(displayStats, 3000);
+	var myVar3 = setInterval(loadFTbalance, 1000);
 	function showAddress(){
 		document.getElementById("address").innerHTML =  accounts[0].toLowerCase();
 	}
