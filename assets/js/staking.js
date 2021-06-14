@@ -17,7 +17,10 @@ if (typeof window.ethereum !== 'undefined') {
 else{
 }
 
-ethereum.on('accountsChanged', function (accounts) {
+
+
+
+ethereum.on('accountsChanged', function getAccounts() {
 	getMetMaskAccounts().then(variable => accounts = variable);
   });
 
