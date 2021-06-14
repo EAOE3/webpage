@@ -1082,6 +1082,10 @@ else{
 		else{document.getElementById("status").innerHTML = "No FT to re-stake";}
 	}
 
+	function maxFT(){
+		document.getElementById("amount").value = balance;
+	}
+
 	function toFixed(x) {
 		if (Math.abs(x) < 1.0) {
 		  var e = parseInt(x.toString().split('e-')[1]);
@@ -1104,6 +1108,7 @@ else{
 	var myVar0 = setInterval(showAddress, 3000);
 	var myVar1 = setInterval(loadStats, 3000);
 	var myVar2 = setInterval(displayStats, 3000);
+	var myVar3 = setInterval(displayStats, 3000);
 	function showAddress(){
 		document.getElementById("address").innerHTML =  accounts[0].toLowerCase();
 	}
@@ -1114,6 +1119,9 @@ else{
 	}
 	function loadStats(){
 		getStats(accounts[0]).then(stats => statictics = stats);
+	}
+	function loadFTbalance(){
+		getFTbalance(accounts[0]).then(bal => balance = bal);
 	}
 	function displayID(){
 		getID().then(ID => processID(ID));
