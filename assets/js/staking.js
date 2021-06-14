@@ -17,6 +17,8 @@ if (typeof window.ethereum !== 'undefined') {
 else{
 }
 
+ethereum.on('accountsChanged', getAccounts());
+
 
   var abi = [
 	{
