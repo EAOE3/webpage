@@ -1090,7 +1090,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 	}
 
 	function maxFT(){
-		document.getElementById("amount").value = balance;
+		document.getElementById("amount").value = toFixed(balance/10000000000);
 	}
 
 	function toFixed(x) {
