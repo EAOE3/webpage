@@ -30,6 +30,7 @@
 
   <script type="text/javascript" src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
   <script type="text/javascript" src=".\assets\js\staking.js"></script>
+  <script type="text/javascript" src=".\assets\js\stakingDesign.js"></script>
 </head>
 
 <body>
@@ -52,7 +53,7 @@
 
 
 
-  <div class="staking">
+  <div id="staking">
     <h2 style="text-align: center;"><b>FT Staking</b></h2>
     <img src="assets/img/FC.png" style="width: 25%;  margin-left: 37.5%;"> <br/>
     <h3 style="text-align: center;">APY : 4.25%</h3>
@@ -61,15 +62,40 @@
     <h4 style="  font-weight: bold;" id="staked">   Staked : ~</h4><br/>
     <h4 style="  font-weight: bold;" id="rewards">   Rewards : ~</h4><br/>
   </div>
-  <div class="stake">
-    <br/>
-    <input value="" style="margin-left: 12.5%; width: 75%; height: 17.5%; border-color: #202020; " id="amount" autocomplete="off">
+  <div id="stake">
+    <button style="background-color: #151515;">Stake</button><button onclick="displayUnstake()">Unstake</button>
     <br/><br/>
-    <input class="button" type="submit" value="Unstake" style=" margin-left: 17.5%; margin-right: 5%; "  onclick="unstake()">
-    <input class="button" type="submit" value="Stake"   onclick="stake()" ><br/><br/>
-	<input class="button" type="submit" value="Unstake All" style=" margin-left: 2.5%; margin-right: 2.5%;" onclick="unstakeAll()" >
-    <input class="button" type="submit" value="Claim Rewards" style="margin-right: 2.5%;" onclick="claimRewards()"  >
+    <input style="margin-left: 10%; width: 75%; height: 17.5%; border-color: #202020; " id="amount" autocomplete="off"><input type="submit" value="Max" style="width: 40px; text-indent:0"  onclick="unstake()">
+    <br/><br/>
+    <center>
+    <input class="button" type="submit" value="Stake"   onclick="stake()" >
 	<input class="button" type="submit" value="Restake"  onclick="refreshStaking()"><br/><br/>
+</center>
+	<h6 style="text-align: center; " id="status"></h6>
+  </div>
+
+  <div id="stake1">
+    <button style="background-color: #151515;">Stake</button><button onclick="displayUnstake()">Unstake</button>
+    <br/><br/>
+    <input style="margin-left: 10%; width: 75%; height: 17.5%; border-color: #202020; " id="amount" autocomplete="off"><input type="submit" value="Max" style="width: 40px; text-indent:0"  onclick="unstake()">
+    <br/><br/>
+    <center>
+    <input class="button" type="submit" value="Stake"   onclick="displayUnstake()" >
+	<input class="button" type="submit" value="Restake"  onclick="refreshStaking()"><br/><br/>
+</center>
+	<h6 style="text-align: center; " id="status"></h6>
+  </div>
+
+  <div id="stake2">
+    <button onclick="displayStake()">Stake</button><button style="background-color: #151515;">Unstake</button>
+    <br/><br/>
+    <input style="margin-left: 10%; width: 75%; height: 17.5%; border-color: #202020; " id="amount" autocomplete="off">
+    <br/><br/>
+    <center>
+      <input class="button" type="submit" value="Unstake"  onclick="unstake()">
+      <input class="button" type="submit" value="Unstake All" onclick="unstakeAll()" >
+      <input class="button" type="submit" value="Claim Rewards" style="width: 140px;margin-top: 10px;" onclick="claimRewards()">
+</center>
 	<h6 style="text-align: center; " id="status"></h6>
   </div>
 
