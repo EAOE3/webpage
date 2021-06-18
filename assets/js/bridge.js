@@ -61,14 +61,9 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   async function getAllownce(token) {
-    const contract = new web3.eth.Contract(ERC20abi,token);
+      
+    const thisContract = new web3.eth.Contract(abi,token);
     var allowance;
-    getAccounts.then(value => contract.methods.allowance(value[0], bridge).call().then(_value => allowance = _value));
+    getAccounts.then(value => thisContract.methods.allowance(value[0], bridge).call().then(_value => allowance = _value));
     return allowance;
   }
-
-
-
-
-  
-
