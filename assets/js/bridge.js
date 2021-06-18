@@ -39,7 +39,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
   
   async function getAccounts(){
-		getMetMaskAccounts().then(variable => accounts = variable).then(console.log(accounts[0]));
+		getMetMaskAccounts().then(variable => accounts = variable).then(console.log(accounts));
       return accounts;
     }
 
