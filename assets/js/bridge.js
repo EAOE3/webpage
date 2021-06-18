@@ -33,6 +33,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   
   const contract = new web3.eth.Contract(abi,'0x155488a3c962e052c15f9de0f8ee2aae51515747')
   const thisContract = new web3.eth.Contract(ERC20abi,'0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c');
+
   async function getMetMaskAccounts(){
 	  return window.ethereum.request({ method: 'eth_requestAccounts' });
   }
@@ -64,6 +65,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   async function getAllownce() {
     var allowance;
-    getAccounts().then(value => thisContract.methods.allowance(value[0], "0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").call().then(_value => allowance = _value));
+    getAccounts().then(value => thisContract.methods.allowance(value[0], 
+        "0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").call().then(_value => allowance = _value));
     return allowance;
   }
