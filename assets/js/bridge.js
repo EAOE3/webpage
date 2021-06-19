@@ -20,7 +20,7 @@ else{
 
 
 getAccounts().then(console.log);
-getAllownce.then(console.log);
+getAllownce().then(console.log);
 
 ethereum.on('accountsChanged', function getAccounts() {
 	getMetMaskAccounts().then(variable => accounts = variable);
