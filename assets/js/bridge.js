@@ -65,7 +65,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   async function getAllownce() {
     var allowance;
-    thisContract.methods.allowance(value[0], 
+    thisContract.methods.allowance(accounts[0], 
         "0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").call().then(_value => allowance = _value);
     return allowance;
   }
