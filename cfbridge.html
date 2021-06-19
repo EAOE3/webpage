@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Crypto Family Bridge</title>
+  <title>Family Token Staking</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -26,302 +26,65 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/bridgeCSS.css" rel="stylesheet">
 
+  <script type="text/javascript" src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
+  <script type="text/javascript" src=".\assets\js\bridge.js"></script>
+  <script type="text/javascript" src=".\assets\js\stakingDesign.js"></script>
 </head>
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-
-      <div class="logo mr-auto">
-        <h1 class="text-light"><a href="index.html"><span>Crypto Family</span></a></h1>
-      </div>
-
-      <nav class="nav-menu d-none d-lg-block ms-auto mb-2 mb-lg-0">
-        <ul>
-          <li class="active"><a href="#">Bridge</a></li>
-          <li><a href="cftoken.html">Token</a></li>
-          <li><a href="cfvault.html">Vault</a></li>
-          <li><a href="cfstaking.html" target="_blank">Staking</a></li>
-          <li><a href="index.html" >Home</a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
-
-    </div>
-  </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
+
 
     <div class="container">
       <div class="row">
         <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up">Crypto Family Bridge</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">Linking the world of blockchains together</h2>
+          <h1 data-aos="fade-up">Family Token Staking</h1>
+          <h2 data-aos="fade-up" data-aos-delay="400">Easily earn with FT </h2>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
-          <img src="assets/img/FC.png" class="img-fluid animated" alt="" style="width: 500px;">
+          <img src="assets/img/FC.png" class="img-fluid animated" alt="" style="width: 280px;">
         </div>
       </div>
     </div>
 
-  </section><!-- End Hero -->
+
+
+  <div id="staking">
+    <h2 style="text-align: center;"><b>CFBridge Transfer</b></h2>
+    <br/>
+    <h6 style="margin-left: 5%;">Transfer Token Address</h6>
+    <input id="tokenAddressFrom" autocomplete="off">
+    <br/><br/>
+    <h6 style="margin-left: 5%;">Transfer To</h6>
+    <input id="to" autocomplete="off">
+    <br/><br/>
+    <h6 style="margin-left: 5%;">Amount</h6>
+    <input id="amount" autocomplete="off">
+    <br/><br/>
+    <h6 style="margin-left: 5%;">Transaction Fee (FT)</h6>
+    <input id="fee" autocomplete="off">
+    <br/><br/>
+    <h6 style="margin-left: 5%;">Claiming Fee (FT)</h6>
+    <input id="claimingFee" autocomplete="off">
+    <br/><br/>
+    <center><input class="button" type="submit" value="Transfer" style="width: 150px;" onclick="refreshStaking()"></center>
+    <br/><br/>
+    <h6 id="status"></h6>
+
+	<p style="text-align: center; margin-left: auto; margin-right: auto;"><h8 style="text-align: center;" id="address"></h8></p>
+  </div>
+  <br/><br/>
+
+
+
+
+
 
   <main id="main">
-
-    <!-- ======= About Us Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>About The Bridge</h2>
-        </div>
-
-        <div class="row content">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
-            <p>
-              <b>What is the Crypto Family Bridge ?</b><br>
-              The Crypto Family Bridge is a protocol under development by the Crypto Family made to link blockchains such as Ethereum and Binance Smart Chain together along with other blockchains
-            </p>
-
-            <p>
-              <b>How will the Bridge be run ?</b><br>
-              The Bridge will be run and secured by nodes that will handle transactions from one blockchain to another (anyone can run a node). The nodes will use the <a href="cftoken.html">Family Token</a> 
-              to acheive PoSA 'Proof of Staked Authority' in between nodes and on the blockchains to help secure transactions and prevent any false transactions or attacks
-            </p>
-            
-          </div>
-
-          <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
-
-            <p>
-              <b>What is the Bridge for ?</b><br>
-              The Bridge provides inter blockchain communication, allowing tokens and coins to be transfered from one blockchain to another aswell as allow smart contracts on different blockchains to 
-              interact with one another 
-            </p>
-
-            <p>
-              <b>Will the Bridge have any transaction fees ?</b><br>
-              The Bridge and its nodes will require a fee to run, aswell as to pay for the fees of the blockchains it's linking. The fees of the Bridge will be handeled in <a href="cftoken.html">Family Token</a>, 
-              users can set the fee they want for their transactions, however transactions with low fees might be ignored by the nodes if the fees are not enough to cover the expneses of the transaction
-          </p>
-
-
-          </div>
-
-
-        </div>
-
-        </div>
-    </section><!-- End About Us Section -->
-
-        <!-- ======= features Us Section ======= -->
-        <section id="about" class="about">
-          <div class="container">
-    
-            <div class="section-title" data-aos="fade-up">
-              <h2>Release Stages</h2>
-            </div>
-    
-            <div class="row content">
-              <div data-aos="fade-up" data-aos-delay="150">
-                <p>
-                  <h3>Testing Phase I</h3>
-                  The Crypto Family Bridge is set to full release in stage 4 of the <a href="cfcity.html">Crypto Family City</a> project, but there will be intensive testing by the developers before 
-                  the full release. Testing Phase I will be a private testing phase available only for the developers and users with 100+ <a href="cftoken.html">Family Tokens</a> to participate in
-                </p>
-                <br>
-                <p>
-                  <h3>Testing Phase II</h3>
-                  After the developers are through with Testing Phase I, Testing Phase II will be available for users with 1+ <a href="cftoken.html">Family Tokens</a> to help expand the range of testing 
-                  and help test the Bridge's performance on a wide range of many nodes 
-                </p>
-                <br>
-                <p>
-                  <h3>Testing Phase III</h3>
-                  Following Testing Phase I and II the Bridge will become public on the Ethereum and Binance Smart Chain test networks for the testing of inter blockchain transactions, and performance of the nodes 
-                  aswell as security and attacks protocols. During this phase anyone who wishes can perform transactions on the Bridge from one chain to another, however node running will remain exclusive to 
-                  <a href="cftoken.html">Family Token</a> holders
-                </p>
-                <br>
-                <p>
-                  <h3>Release</h3>
-                  Succeeding testing the Crypto Family Bridge will go live on the Ethereum and Binance Smart Chain main networks, guides and documentations on running nodes and using the bridge will be released, 
-                  <a href="cftoken.html">Family Token</a> will become available on both blockchains and transferable inbetween the two using the Bridge, the Bridge will also be open for any token or contract that wishes 
-                  to use it 
-                </p>
-              </div>
-    
-    
-            </div>
-    
-            </div>
-        </section><!-- End features Us Section -->
-
-                <!-- ======= features Us Section ======= -->
-                <section id="about" class="about">
-                  <div class="container">
-            
-                    <div class="section-title" data-aos="fade-up">
-                      <h2>How To Run A Node</h2>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-delay="150">
-                    <center><h3><b>Coming Soon</b></h3></center>
-                    </div>
-            
-                    </div>
-                </section><!-- End features Us Section -->
-
-                <!-- ======= features Us Section ======= -->
-                <section id="about" class="about">
-                  <div class="container">
-            
-                    <div class="section-title" data-aos="fade-up">
-                      <h2>How To Use The Bridge</h2>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-delay="150">
-                    <center><h3><b>Coming Soon</b></h3></center>
-                    </div>
-            
-                    </div>
-                </section><!-- End features Us Section -->                
-    <!-- ======= F.A.Q Section ======= -->
-    <section id="faq" class="faq">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Frequently Asked Questions</h2>
-        </div>
-
-        <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-5">
-            <i class="ri-question-line"></i>
-            <h4>When is the release date of every stage ?</h4>
-          </div>
-          <div class="col-lg-7">
-            <p>
-              The stages have no fixed release date and their release is linked to their development and testing
-            </p>
-          </div>
-        </div>
-
-        <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-5">
-            <i class="ri-question-line"></i>
-            <h4>Requirements of running a node ?</h4>
-          </div>
-          <div class="col-lg-7">
-            <p>
-              Detailed requirements of running a Crypto Family Bridge Node will be listed after phase 2 of testing is done with, but for the moment the only known requirement is the need of 
-              a descent amount of <a href="cftoken.html">Family Tokens</a> to help achieve PoSA 'Proof of Staked Authority' on the node and securing the Bridge, and fast stable wifi connection
-            </p>
-          </div>
-        </div>
-
-        <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-5">
-            <i class="ri-question-line"></i>
-            <h4>Will the fees on the Bridge be expensive ?</h4>
-          </div>
-          <div class="col-lg-7">
-            <p>
-              Fees between blockchain pairs vary depending on the gas price of the two blockchains. The fee charged by the bridge 
-              should be enough to pay the nodes back for the gas they used transferring data between the two blockchains
-            </p>
-          </div>
-        </div>
-
-        <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-5">
-            <i class="ri-question-line"></i>
-            <h4>Will the Bridge link blockchains other than Ethereum and BSC ?</h4>
-          </div>
-          <div class="col-lg-7">
-            <p>
-              The Crypto Family Bridge will link many and all possible blockchains, such as Tron, xDai, Matic, PolkaDot parachains and many others
-            </p>
-          </div>
-        </div><!-- End F.A.Q Item-->
-
-      </div>
-    </section><!-- End F.A.Q Section -->
-
-    <!-- ======= Project Section ======= -->
-    <section id="prject" class="project">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Other Projects</h2>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 mt-4 mt-md-0 pointer" data-aos="fade-up" data-aos-delay="200" onclick="location.href='cftoken.html'">
-            <div class="info p-2 border border-3 border-dark text-center h-100">
-              <h3>Crypto Family Token</h3>
-              <img src="assets/img/FC.png" class="" alt="" width="150" height="150">
-              <p>Store of value, staking rewards, fast and cheap transactions.</p>
-              <p>All achieved in one token</p>
-            </div>
-          </div>
-
-          
-          <div class="col-lg-4 col-md-6 mt-4 mt-md-0 pointer" data-aos="fade-up" data-aos-delay="200" style="visibility: hidden;">
-            <div class="info p-2 border border-3 border-dark text-center h-100">
-              <h3>Crypto Family City</h3>
-              <img src="assets/img/cfcity.png" class="" alt="" width="150" height="150">
-              <p>A city of never ending evolution and new ideas</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mt-4 mt-md-0 pointer" data-aos="fade-up" data-aos-delay="200" onclick="location.href='cfvault.html'">
-            <div class="info p-2 border border-3 border-dark text-center h-100">
-              <h3>Crypto Family Vault</h3>
-              <img src="assets/img/FC.png" class="" alt="" width="150" height="150">
-              <p>Storing cryptos made more secure than ever</p>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-    </section><!-- End Project Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Contact Us</h2>
-            <p>
-              You can get in touch with us on our Discord server and Telegram Group!
-              <br><br>
-              <a href="https://discord.gg/XQSGzkC" target="_blank"><img src="assets/img/discord.png" alt="" width="400" height="130" style="padding-left: 1%; padding-right: 1%;"></a>
-              <a href="https://t.me/joinchat/iLaqHCgNHc4xNjE0" target="_blank"><img src="assets/img/telegram.png" alt="" width="400" height="130" style="padding-left: 1%; padding-right: 1%;"></a>
-            </p>
-          </div>
-        </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <div class="row d-flex align-items-center">
-        <div class="col-lg-6 text-lg-left text-center">
-          <div class="copyright">
-            &copy; Copyright <strong>Crypto Family</strong>. All Rights Reserved
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/jquery/jquery.min.js"></script>
