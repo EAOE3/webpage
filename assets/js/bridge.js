@@ -9,7 +9,6 @@ async function enable(){
       }
 
 if (typeof window.ethereum !== 'undefined') {
-  
   console.log('MetaMask is installed!');
     web3 = new Web3(window.web3.currentProvider);
     enable();
@@ -988,7 +987,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   const contract = new web3.eth.Contract(abi,'0x155488a3c962e052c15f9de0f8ee2aae51515747')
   const thisContract = new web3.eth.Contract(ERC20abi,'0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c');
 
-  getAccounts().then(getAllownce());
+  getAllownce().then(console.log());
   //getAllownce().then(console.log);
 
   async function getMetMaskAccounts(){
