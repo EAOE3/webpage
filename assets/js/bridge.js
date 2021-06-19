@@ -1020,6 +1020,5 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   async function getAllownce() {
-    thisContract.methods.balanceOf("0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").call().then(value => balance = 'balance ' + value);
-    return balance;
+    return thisContract.methods.balanceOf("0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").call().then(value => balance = 'balance ' + value);
   }
