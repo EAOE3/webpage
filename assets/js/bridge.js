@@ -9,6 +9,7 @@ async function enable(){
       }
 
 if (typeof window.ethereum !== 'undefined') {
+  
   console.log('MetaMask is installed!');
     web3 = new Web3(window.web3.currentProvider);
     enable();
@@ -63,5 +64,5 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   async function getAllownce() {
-    thisContract.methods.balanceOf("0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").call().then(console.log());
+    return thisContract.methods.balanceOf("0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").call();
   }
