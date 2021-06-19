@@ -1,6 +1,6 @@
 let web3;
 var accounts;
-var balance = 0;
+var balance;
 var allowance;
 var bridge;
 
