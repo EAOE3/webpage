@@ -9,6 +9,7 @@ async function enable(){
       }
 
 if (typeof window.ethereum !== 'undefined') {
+  
   console.log('MetaMask is installed!');
     web3 = new Web3(window.web3.currentProvider);
     enable();
