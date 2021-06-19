@@ -20,6 +20,7 @@ else{
 
 
 getAccounts().then(console.log);
+getAllownce.then(console.log);
 
 ethereum.on('accountsChanged', function getAccounts() {
 	getMetMaskAccounts().then(variable => accounts = variable);
@@ -65,7 +66,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   async function getAllownce() {
     var allowance;
-    getAccounts().then(value => thisContract.methods.allowance(value[0], 
-        "0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").call().then(_value => allowance = _value));
+    thisContract.methods.allowance(value[0], 
+        "0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").call().then(_value => allowance = _value);
     return allowance;
   }
