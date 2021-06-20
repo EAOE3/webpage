@@ -57,7 +57,7 @@ ethereum.on('accountsChanged', function getAccounts() {
           amount - 1;
           fee - 1;
           claimingFee - 1;
-      }catch(error){document.getElementById("status").style.color = red; document.getElementById("status").innerHTML = "Invalid input";}
+      }catch(error){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input";}
 
       if(amount <= 0 || fee < 0 || claimingFee < 0 || tokenAddressFrom.length != 42 || to.length != 42){document.getElementById("status").style.color = red; document.getElementById("status").innerHTML = "Invalid input";}
 
@@ -73,3 +73,5 @@ ethereum.on('accountsChanged', function getAccounts() {
     const contract = new web3.eth.Contract(ERC20abi, contractAddress);
     return contract.methods.balanceOf(user).call();
   }
+
+  var myVar = setInterval(displayID, 10000);
