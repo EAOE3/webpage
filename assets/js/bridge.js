@@ -59,7 +59,7 @@ ethereum.on('accountsChanged', function getAccounts() {
           claimingFee - 1;
       }catch(error){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input0";}
 
-      if(amount <= 0 || fee < 0 || claimingFee < 0 || tokenAddressFrom.length != 42 || to.length != 42){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input1"; return;}
+      if(amount <= 0 || fee < 0 || claimingFee < 0 || tokenAddressFrom.replace(" ", "").length != 42 || to.replace(" ", "").length != 42){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input11"; return;}
 
       if(tokenAddressFrom == "0x0000000000000000000000000000000000000000"){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
       else{
