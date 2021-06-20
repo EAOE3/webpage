@@ -31,6 +31,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   //const contract = new web3.eth.Contract(abi,'0x155488a3c962e052c15f9de0f8ee2aae51515747')
   const thisContract = new web3.eth.Contract(ERC20abi,'0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c');
 
+  getFTbalance.then(bal => console.log(bal));
   getAllowance("0x2DBE938e546357D9738087C39C54C96FEdb23e11").then(bal => console.log(bal));
   //console.log(getAllownce());
   //getAllownce().then(console.log);
