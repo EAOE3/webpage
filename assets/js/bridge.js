@@ -36,6 +36,9 @@ ethereum.on('accountsChanged', function getAccounts() {
   //console.log(getAllownce());
   //getAllownce().then(console.log);
 
+  function displayAccount(){
+    console.log(accounts[0]);
+  }
   async function getMetMaskAccounts(){
 	  return window.ethereum.request({ method: 'eth_requestAccounts' });
   }
