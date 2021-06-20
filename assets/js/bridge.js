@@ -2,7 +2,7 @@ let web3;
 var accounts;
 var balance;
 var allowance;
-var bridge;
+var bridge = "0x155488a3c962e052c15f9de0f8ee2aae51515747";
 
 async function enable(){
         return ethereum.enable();
@@ -63,7 +63,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
       if(tokenAddressFrom == "0x0000000000000000000000000000000000000000"){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
       else{
-        getAllowance(tokenAddressFrom, accounts[0]).then(value => processAllowance);
+        getAllowance(tokenAddressFrom, accounts[0]).then(value => processAllowance(tokenAddressFrom, bridge, value, amount));
         while(allowance < amount){
           getAllowance.then(value => allowance = value);
           if(allowance >= amount){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
