@@ -39,7 +39,7 @@ body{
   h4{
   margin-left: 10px;
   }
-  #staking{
+  #transfer{
   margin : auto; 
   background-color: #151515;
   border: #202020;
@@ -47,24 +47,11 @@ body{
   border-bottom: blue;
   border-radius: 15px;
   width: 380px;
-  height: 500px;
+  height: 520px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   
   }
-  
-  #stake{
-  margin : auto; 
-  background-color: #151515;
-  border: #202020;
-  border-style: solid;
-  border-bottom: borangelack;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px ;
-  border-bottom-style:solid;
-  margin-bottom: 50px;
-  width: 380px;
-  height: 210px;
-  }
+
   
   #stake1{
     display: none;
