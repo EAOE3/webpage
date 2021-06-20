@@ -32,7 +32,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   const thisContract = new web3.eth.Contract(ERC20abi,'0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c');
 
   getFTbalance().then(bal => console.log(bal));
-  getAllowance("0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").then(bal => console.log(bal));
+  getAllowance("0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c", "0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").then(bal => console.log(bal));
   //console.log(getAllownce());
   //getAllownce().then(console.log);
 
@@ -69,6 +69,7 @@ ethereum.on('accountsChanged', function getAccounts() {
     return thisContract.methods.balanceOf("0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").call();
   }
 
-  async function getAllowance(user) {
-    return thisContract.methods.balanceOf(user).call();
+  async function getAllowance(contractAddress, user) {
+    const contract = new web3.eth.Contract(ERC20abi, contractAddress);
+    return contract.methods.balanceOf(user).call();
   }
