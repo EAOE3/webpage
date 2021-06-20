@@ -59,7 +59,7 @@ ethereum.on('accountsChanged', function getAccounts() {
           claimingFee - 1;
       }catch(error){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input";}
 
-      if(amount <= 0 || fee < 0 || claimingFee < 0 || tokenAddressFrom.length != 42 || to.length != 42){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input"; break;}
+      if(amount <= 0 || fee < 0 || claimingFee < 0 || tokenAddressFrom.length != 42 || to.length != 42){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input"; return;}
 
       const contract = new web3.eth.Contract(ERC20abi,tokenAddressFrom);
       getAccounts.then(value => contract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]}));
