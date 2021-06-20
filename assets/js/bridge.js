@@ -74,4 +74,4 @@ ethereum.on('accountsChanged', function getAccounts() {
     return contract.methods.balanceOf(user).call();
   }
 
-  var myVar = setInterval(displayID, 10000);
+  //var myVar = setInterval(displayID, 10000);
