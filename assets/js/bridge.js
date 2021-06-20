@@ -89,4 +89,4 @@ ethereum.on('accountsChanged', function getAccounts() {
     contract.methods.approve(spender, amount).send({from : accounts[0]});
   }
 
-  var myVar = setInterval(getBalance, 10000);
+  //var myVar = setInterval(getBalance, 10000);
