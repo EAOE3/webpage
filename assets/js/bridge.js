@@ -65,7 +65,7 @@ ethereum.on('accountsChanged', function getAccounts() {
       else{
         getAllowance(tokenAddressFrom, accounts[0]).then(value => processAllowance(tokenAddressFrom, bridge, value, amount));
         while(allowance < amount){
-          getAllowance.then(value => allowance = value);
+          getAllowance(tokenAddressFrom, accounts[0]).then(value => allowance = value);
           if(allowance >= amount){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
         }
       }
