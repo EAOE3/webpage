@@ -53,6 +53,20 @@ ethereum.on('accountsChanged', function getAccounts() {
       return accounts;
     }
 
+  function amount() {
+    return document.getElementById("amount").value.replace(" ", "");
+  }
+
+  function tokenAddressFrom() {
+    return document.getElementById("tokenAddressFrom").value.replace(" ", "");
+  }
+  
+  function totalFees() {
+    var fee = document.getElementById("fee").value.replace(" ", "");
+    var claimingFee = document.getElementById("claimingFee").value.replace(" ", "");
+    return fee + claimingFee * 10000000000;
+  }
+
   function transfer(){
       var tokenAddressFrom = document.getElementById("tokenAddressFrom").value.replace(" ", "");
       var to = document.getElementById("to").value.replace(" ", "");
@@ -69,6 +83,8 @@ ethereum.on('accountsChanged', function getAccounts() {
 
       if(amount <= 0 || fee < 0 || claimingFee < 0 || !web3.utils.isAddress(tokenAddressFrom) || !web3.utils.isAddress(to) ){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input11"; return;}
 
+      getBalance(tokenAddressFrom).then(value => processTransfer(value, amount));
+
       /*if(tokenAddressFrom == "0x0000000000000000000000000000000000000000"){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
       else{
         getAllowance(tokenAddressFrom, bridge).then(value => processAllowance(tokenAddressFrom, bridge, value, amount));
@@ -78,30 +94,48 @@ ethereum.on('accountsChanged', function getAccounts() {
       }*/
     }
 
-  function processAllowance(token, spender, allowance, amount) {
-    if(allowance < amount){approve(token, spender, 115792089237316195423570985008687907853269984665640564039457584007913129639935);}
-  }
+    function processTransfer(balance) { //checks if users balance is enough
+      if(balance >= amount()){getFTbalance().then(value => processTransfer1(value));}
+      else{document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Insufficient Balance";}
+    }
+
+    function processTransfer1(FTbalance) { //checks if user has enough FT to cover fees
+      if(FTbalance >= totalFees()){getAllowance().then(value => processTransfer2(value));}
+      else{document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Insufficient FT to cover fees";}
+    }
+
+    function processTransfer2(Allowance) { //checks if user gave allowance to the bridge and forwards the request
+      if(Allowance >= amount()){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
+      else{
+        allowance = 0;
+        approve();
+        while(true){
+          if(allowance > amount()){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]}); break;}
+        }
+      }
+    }
 
   async function getFTbalance() {
     return thisContract.methods.balanceOf(accounts[0]).call();
   }
 
-  async function getBalance(token) {
+  async function getBalance() {
     const contract = new web3.eth.Contract(ERC20abi, token);
     return contract.methods.balanceOf(accounts[0]).call();
   }
-  async function getAllowance(contractAddress, user) {
-    return thisContract.methods.allowance(user, user).call();
+  async function getAllowance() {
+    const contract = new web3.eth.Contract(ERC20abi, token);
+    return contract.methods.allowance(accounts[0], bridge).call();
   }
 
-  async function getDecimals(token) {
+  async function getDecimals() {
     const contract = new web3.eth.Contract(ERC20abi, token);
     return contract.methods.decimals().call();
   }
 
-  function approve(token, spender, amount){
-    const contract = new web3.eth.Contract(ERC20abi, token);
-    contract.methods.approve(spender, amount).send({from : accounts[0]});
+  function approve(){
+    const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
+    contract.methods.approve(bridge, 115792089237316195423570985008687907853269984665640564039457584007913129639935).send({from : accounts[0]});
   }
 
   var myVar = setInterval(getFamilyBalance, 3000);
