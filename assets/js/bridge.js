@@ -126,8 +126,8 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   function allowanceCheck() {
-    if(allowance == 0){document.getElementById("submit").innerHTML = "Approve";}
-    else if(allowance == 1){document.getElementById("submit").innerHTML = "Transfer";}
+    if(allowance == 0){document.getElementById("submit").value = "Approve";}
+    else if(allowance == 1){document.getElementById("submit").value = "Transfer";}
   }
 
 
