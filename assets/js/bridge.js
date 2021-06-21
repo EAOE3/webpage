@@ -4,6 +4,7 @@ var allowance;
 var bridge = "0x155488a3c962e052c15f9de0f8ee2aae51515747";
 
 var balance;
+var tokenBalance;
 var alowance;
 var FTcontract = "0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c";
 
@@ -86,6 +87,10 @@ ethereum.on('accountsChanged', function getAccounts() {
     return thisContract.methods.balanceOf(accounts[0]).call();
   }
 
+  async function getBalance(token) {
+    const contract = new web3.eth.Contract(ERC20abi, token);
+    return contract.methods.balanceOf(accounts[0]).send({from : accounts[0]});
+  }
   async function getAllowance(contractAddress, user) {
     return thisContract.methods.allowance(user, user).call();
   }
@@ -96,11 +101,18 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   var myVar = setInterval(getBalance, 3000);
+  var myVar0 = setInterval(getTokenBalance, 3000);
   var myVar1 = setInterval(getTokenAllowance, 3000);
 
   function getBalance() {
     getFTbalance().then(value => balance = value);
     console.log(balance);
+  }
+
+  function getTokenBalance() {
+    var contract = document.getElementById("tokenAddressFrom").value.trim();
+    getBalance(contract).then(value => tokenBalance = value);
+    console.log("Bal : " + tokenBalance);
   }
 
   function getTokenAllowance() {
