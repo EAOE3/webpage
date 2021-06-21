@@ -106,7 +106,6 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   function getBalance() {
     getFTbalance().then(value => balance = value);
-    console.log(balance);
   }
 
   function getTokenBalance() {
@@ -120,5 +119,6 @@ ethereum.on('accountsChanged', function getAccounts() {
     getAllowance(contract, bridge).then(value => allowance = value);
     console.log("allowance : " + allowance);
   }
+
 
 
