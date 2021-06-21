@@ -116,14 +116,14 @@ ethereum.on('accountsChanged', function getAccounts() {
     }
 
     function processTransfer2(Allowance) { //checks if user gave allowance to the bridge and forwards the request
-      if(Allowance >= amount()){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : value[0]});}
+      if(Allowance >= amount()){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]});}
       else{
         allowance = 0;
         approve();
         while(true){
           getAllowance().then(value => allowance = value);
           console.log(allowance);
-          if(allowance >= amount){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : value[0]}); break;}
+          if(allowance >= amount){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]}); break;}
         }
       }
     }
