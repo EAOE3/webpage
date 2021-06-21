@@ -59,6 +59,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   function tokenAddressFrom() {
     console.log(document.getElementById("tokenAddressFrom").value.trim());
+    console.log("wtf");
     return document.getElementById("tokenAddressFrom").value.trim();
   }
   
