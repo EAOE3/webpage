@@ -87,7 +87,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   async function getAllowance(contractAddress, user) {
     const contract = new web3.eth.Contract(ERC20abi, contractAddress);
-    return contract.methods.allowance(user).call();
+    return contract.methods.allowance(address[0], user).call();
   }
 
   function approve(token, spender, amount){
@@ -104,7 +104,8 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   function getTokenAllowance() {
-    getAllowance(document.getElementById("tokenAddressFrom").value, accounts[0]).then(value => console.log(value));
+    var contract = document.getElementById("tokenAddressFrom").valuae.replace(" ", "");
+    getAllowance(contract, contract).then(value => console.log(value));
     //console.log(document.getElementById("tokenAddressFrom").value);
     //console.log(allowance);
   }
