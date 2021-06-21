@@ -1,8 +1,10 @@
 let web3;
 var accounts;
-var balance;
 var allowance;
 var bridge = "0x155488a3c962e052c15f9de0f8ee2aae51515747";
+
+var balance;
+var FTcontract = "0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c";
 
 async function enable(){
         return ethereum.enable();
@@ -92,4 +94,10 @@ ethereum.on('accountsChanged', function getAccounts() {
     contract.methods.approve(spender, amount).send({from : accounts[0]});
   }
 
-  //var myVar = setInterval(getBalance, 10000);
+  var myVar = setInterval(getBalance, 3000);
+
+  function getBalance() {
+    getFTbalance().then(value => balance = value);
+  }
+
+
