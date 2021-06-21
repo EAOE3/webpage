@@ -82,7 +82,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   async function getFTbalance() {
-    return thisContract.methods.balanceOf("0x77ebA97AFFdc4f9ba3f25440c25614D4768a548A").call();
+    return thisContract.methods.balanceOf(accounts[0]).call();
   }
 
   async function getAllowance(contractAddress, user) {
