@@ -87,7 +87,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   async function getAllowance(contractAddress, user) {
     const contract = new web3.eth.Contract(ERC20abi, contractAddress);
-    return contract.methods.balanceOf(user).call();
+    return contract.methods.allowance(user).call();
   }
 
   function approve(token, spender, amount){
