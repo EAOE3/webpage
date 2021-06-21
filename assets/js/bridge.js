@@ -85,7 +85,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
       if(amount <= 0 || fee < 0 || claimingFee < 0 || !web3.utils.isAddress(tokenAddressFrom) || !web3.utils.isAddress(to) ){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input11"; return;}
 
-      getBalance(tokenAddressFrom).then(value => processTransfer(value, amount));
+      getBalance().then(value => processTransfer(value));
 
       /*if(tokenAddressFrom == "0x0000000000000000000000000000000000000000"){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
       else{
