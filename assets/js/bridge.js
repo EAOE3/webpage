@@ -104,8 +104,8 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   function getTokenAllowance() {
-    var contract = document.getElementById("tokenAddressFrom").valuae;
-    getAllowance(contract.trim(), contract.trim()).then(value => console.log(value));
+    var contract = document.getElementById("tokenAddressFrom").value.trim();
+    getAllowance(contract, contract).then(value => console.log(value));
     //console.log(document.getElementById("tokenAddressFrom").value);
     //console.log(allowance);
   }
