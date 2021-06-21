@@ -2,7 +2,7 @@ let web3;
 var accounts;
 
 var FTcontract = "0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c";
-var bridge = "0x155488a3c962e052c15f9de0f8ee2aae51515747";
+var bridge = "0xa7492de8f0AF428A717F8188c1f33c59a58E439D";
 
 async function enable(){
         return ethereum.enable();
