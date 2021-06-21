@@ -104,12 +104,12 @@ ethereum.on('accountsChanged', function getAccounts() {
     contract.methods.approve(spender, amount).send({from : accounts[0]});
   }
 
-  var myVar = setInterval(getBalance, 3000);
+  var myVar = setInterval(getFamilyBalance, 3000);
   var myVar0 = setInterval(getTokenBalance, 3000);
   var myVar1 = setInterval(getTokenAllowance, 3000);
   var myVar2 = setInterval(allowanceCheck, 3000);
 
-  function getBalance() {
+  function getFamilyBalance() {
     getFTbalance().then(result => balance = result);
   }
 
