@@ -54,25 +54,25 @@ ethereum.on('accountsChanged', function getAccounts() {
     }
 
   function amount() {
-    return document.getElementById("amount").value.replace(" ", "");
+    return document.getElementById("amount").value.trim();
   }
 
   function tokenAddressFrom() {
-    return document.getElementById("tokenAddressFrom").value.replace(" ", "");
+    return document.getElementById("tokenAddressFrom").value.trim();
   }
   
   function totalFees() {
-    var fee = document.getElementById("fee").value.replace(" ", "");
-    var claimingFee = document.getElementById("claimingFee").value.replace(" ", "");
+    var fee = document.getElementById("fee").value.trim();
+    var claimingFee = document.getElementById("claimingFee").value.trim();
     return fee + claimingFee * 10000000000;
   }
 
   function transfer(){
-      var tokenAddressFrom = document.getElementById("tokenAddressFrom").value.replace(" ", "");
-      var to = document.getElementById("to").value.replace(" ", "");
-      var amount = document.getElementById("amount").value.replace(" ", "");
-      var fee = document.getElementById("fee").value.replace(" ", "");
-      var claimingFee = document.getElementById("claimingFee").value.replace(" ", "");
+      var tokenAddressFrom = document.getElementById("tokenAddressFrom").value.trim();
+      var to = document.getElementById("to").value.trim();
+      var amount = document.getElementById("amount").value.trim();
+      var fee = document.getElementById("fee").value.trim();
+      var claimingFee = document.getElementById("claimingFee").value.trim();
 
 
       try{
