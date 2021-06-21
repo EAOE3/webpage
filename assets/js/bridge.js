@@ -34,7 +34,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   const bridgeContract = new web3.eth.Contract(abi,'0x155488a3c962e052c15f9de0f8ee2aae51515747')
   const thisContract = new web3.eth.Contract(ERC20abi,'0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c');
 
-  getFTbalance().then(console.log(bal));
+  getFTbalance().then(console.log);
   //getMetMaskAccounts().then(val => console.log(val[0]));
   //getAllowance("0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c", "0x2DBE938e546357D9738087C39C54C96FEdb23e11").then(bal => console.log(bal));
   //console.log(getAllownce());
@@ -100,12 +100,12 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   function getBalance() {
     getFTbalance().then(value => balance = value);
-    console.log(balance);
+    //console.log(balance);
   }
 
   function getTokenAllowance() {
     var contract = document.getElementById("tokenAddressFrom").value.trim();
-    getAllowance(contract, bridge).then(console.log());
+    getAllowance(contract, bridge).then(console.log);
     //console.log(document.getElementById("tokenAddressFrom").value);
     //console.log(allowance);
   }
