@@ -4,10 +4,6 @@ var accounts;
 var FTcontract = "0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c";
 var bridge = "0x155488a3c962e052c15f9de0f8ee2aae51515747";
 
-var balance;
-var tokenBalance;
-var allowance;
-
 async function enable(){
         return ethereum.enable();
       }
@@ -111,9 +107,10 @@ ethereum.on('accountsChanged', function getAccounts() {
       else{
         allowance = 0;
         approve();
-        /*while(true){
-          if(allowance > amount()){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]}); break;}
-        }*/
+        while(true){
+          getAllowance().then(value => allowance = value);
+          if(allowance >= amount){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]}); break;}
+        }
       }
     }
 
