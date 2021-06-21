@@ -1,12 +1,12 @@
 let web3;
 var accounts;
-var allowance;
+
+var FTcontract = "0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c";
 var bridge = "0x155488a3c962e052c15f9de0f8ee2aae51515747";
 
 var balance;
 var tokenBalance;
 var alowance;
-var FTcontract = "0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c";
 
 async function enable(){
         return ethereum.enable();
@@ -67,16 +67,15 @@ ethereum.on('accountsChanged', function getAccounts() {
           claimingFee - 1;
       }catch(error){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input0";}
 
-      //if(amount <= 0 || fee < 0 || claimingFee < 0 || !web3.utils.isAddress(tokenAddressFrom) || !web3.utils.isAddress(to) ){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input11"; return;}
+      if(amount <= 0 || fee < 0 || claimingFee < 0 || !web3.utils.isAddress(tokenAddressFrom) || !web3.utils.isAddress(to) ){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input11"; return;}
 
-      if(tokenAddressFrom == "0x0000000000000000000000000000000000000000"){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
+      /*if(tokenAddressFrom == "0x0000000000000000000000000000000000000000"){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
       else{
-        getAllowance(tokenAddressFrom, accounts[0]).then(value => processAllowance(tokenAddressFrom, bridge, value, amount));
+        getAllowance(tokenAddressFrom, bridge).then(value => processAllowance(tokenAddressFrom, bridge, value, amount));
         while(allowance < amount){
-          getAllowance(tokenAddressFrom, accounts[0]).then(value => allowance = value);
           if(allowance >= amount){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
         }
-      }
+      }*/
     }
 
   function processAllowance(token, spender, allowance, amount) {
@@ -89,10 +88,15 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   async function getBalance(token) {
     const contract = new web3.eth.Contract(ERC20abi, token);
-    return contract.methods.balanceOf(accounts[0]).send({from : accounts[0]});
+    return contract.methods.balanceOf(accounts[0]).call();
   }
   async function getAllowance(contractAddress, user) {
     return thisContract.methods.allowance(user, user).call();
+  }
+
+  async function getDecimals(token) {
+    const contract = new web3.eth.Contract(ERC20abi, token);
+    return contract.methods.decimals().call();
   }
 
   function approve(token, spender, amount){
@@ -103,22 +107,27 @@ ethereum.on('accountsChanged', function getAccounts() {
   var myVar = setInterval(getBalance, 3000);
   var myVar0 = setInterval(getTokenBalance, 3000);
   var myVar1 = setInterval(getTokenAllowance, 3000);
+  var myVar2 = setInterval(allowanceCheck, 3000);
 
   function getBalance() {
-    getFTbalance().then(value => balance = value);
+    getFTbalance().then(result => balance = result);
   }
 
   function getTokenBalance() {
     var contract = document.getElementById("tokenAddressFrom").value.trim();
-    getBalance(contract).then(value => tokenBalance = value);
+    getBalance(contract).then(result => tokenBalance = result);
     console.log("Bal : " + tokenBalance);
   }
 
   function getTokenAllowance() {
     var contract = document.getElementById("tokenAddressFrom").value.trim();
-    getAllowance(contract, bridge).then(value => allowance = value);
+    getAllowance(contract, bridge).then(result => allowance = result);
     console.log("allowance : " + allowance);
   }
 
+  function allowanceCheck() {
+    if(allowance == 0){document.getElementById("submit").innerHTML = "Approve";}
+    else if(allowance == 1){document.getElementById("submit").innerHTML = "Transfer";}
+  }
 
 
