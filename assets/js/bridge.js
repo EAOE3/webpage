@@ -4,6 +4,7 @@ var allowance;
 var bridge = "0x155488a3c962e052c15f9de0f8ee2aae51515747";
 
 var balance;
+var alowance;
 var FTcontract = "0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c";
 
 async function enable(){
@@ -95,9 +96,17 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   var myVar = setInterval(getBalance, 3000);
+  var myVar1 = setInterval(getTokenAllowance, 3000);
 
   function getBalance() {
     getFTbalance().then(value => balance = value);
+    console.log(balance);
+  }
+
+  function getTokenAllowance() {
+    getAllowance(document.getElementById("tokenAddressFrom").innerHTML, accounts[0]).then(value => allowance = value);
+
+    console.log(allowance);
   }
 
 
