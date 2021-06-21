@@ -52,11 +52,11 @@ ethereum.on('accountsChanged', function getAccounts() {
     }
 
   function transfer(){
-      var tokenAddressFrom = document.getElementById("tokenAddressFrom").innerHTML.replace(" ", "");
-      var to = document.getElementById("to").innerHTML.replace(" ", "");
-      var amount = document.getElementById("amount").innerHTML.replace(" ", "");
-      var fee = document.getElementById("fee").innerHTML.replace(" ", "");
-      var claimingFee = document.getElementById("claimingFee").innerHTML.replace(" ", "");
+      var tokenAddressFrom = document.getElementById("tokenAddressFrom").value.replace(" ", "");
+      var to = document.getElementById("to").value.replace(" ", "");
+      var amount = document.getElementById("amount").value.replace(" ", "");
+      var fee = document.getElementById("fee").value.replace(" ", "");
+      var claimingFee = document.getElementById("claimingFee").value.replace(" ", "");
 
 
       try{
@@ -100,7 +100,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   function getBalance() {
     getFTbalance().then(value => balance = value);
-    aconsole.log(balance);
+    console.log(balance);
   }
 
   function getTokenAllowance() {
