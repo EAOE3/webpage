@@ -104,9 +104,9 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   function getTokenAllowance() {
-    getAllowance(document.getElementById("tokenAddressFrom").value, accounts[0]).then(value => allowance = value);
+    getAllowance(document.getElementById("tokenAddressFrom").value, accounts[0]).then(value => console.log(value));
     console.log(document.getElementById("tokenAddressFrom").value);
-    console.log(allowance);
+    //console.log(allowance);
   }
 
 
