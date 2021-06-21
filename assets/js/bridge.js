@@ -100,12 +100,12 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   function getBalance() {
     getFTbalance().then(value => balance = value);
-    //console.log(balance);
+    aconsole.log(balance);
   }
 
   function getTokenAllowance() {
     getAllowance(document.getElementById("tokenAddressFrom").value, accounts[0]).then(value => console.log(value));
-    console.log(document.getElementById("tokenAddressFrom").value);
+    //console.log(document.getElementById("tokenAddressFrom").value);
     //console.log(allowance);
   }
 
