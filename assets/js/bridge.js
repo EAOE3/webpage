@@ -6,7 +6,7 @@ var bridge = "0x155488a3c962e052c15f9de0f8ee2aae51515747";
 
 var balance;
 var tokenBalance;
-var alowance;
+var allowance;
 
 async function enable(){
         return ethereum.enable();
