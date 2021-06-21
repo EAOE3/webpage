@@ -109,6 +109,7 @@ ethereum.on('accountsChanged', function getAccounts() {
         approve();
         while(true){
           getAllowance().then(value => allowance = value);
+          console.log(allowance);
           if(allowance >= amount){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]}); break;}
         }
       }
