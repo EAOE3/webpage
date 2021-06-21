@@ -124,7 +124,7 @@ ethereum.on('accountsChanged', function getAccounts() {
     return contract.methods.balanceOf(accounts[0]).call();
   }
   async function getAllowance() {
-    const contract = new web3.eth.Contract(ERC20abi, token);
+    const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
     return contract.methods.allowance(accounts[0], bridge).call();
   }
 
