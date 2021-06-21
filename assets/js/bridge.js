@@ -149,13 +149,13 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   function getTokenBalance() {
     var contract = document.getElementById("tokenAddressFrom").value.trim();
-    getBalance(contract).then(result => tokenBalance = result);
+    getBalance().then(result => tokenBalance = result);
     console.log("Bal : " + tokenBalance);
   }
 
   function getTokenAllowance() {
     var contract = document.getElementById("tokenAddressFrom").value.trim();
-    getAllowance(contract, bridge).then(result => allowance = result);
+    getAllowance().then(result => allowance = result);
     console.log("allowance : " + allowance);
   }
 
