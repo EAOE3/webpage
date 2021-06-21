@@ -111,9 +111,9 @@ ethereum.on('accountsChanged', function getAccounts() {
       else{
         allowance = 0;
         approve();
-        while(true){
+        /*while(true){
           if(allowance > amount()){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]}); break;}
-        }
+        }*/
       }
     }
 
