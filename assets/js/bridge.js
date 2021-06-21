@@ -59,11 +59,24 @@ ethereum.on('accountsChanged', function getAccounts() {
     return document.getElementById("tokenAddressFrom").value.trim();
   }
   
+  function fee() {
+    return document.getElementById("fee").value.trim();
+  }
+
+  function claimingFee() {
+    return document.getElementById("claimingFee").value.trim();
+  }
+
   function totalFees() {
     var fee = document.getElementById("fee").value.trim();
     var claimingFee = document.getElementById("claimingFee").value.trim();
     return fee + claimingFee * 10000000000;
   }
+
+  function to() {
+    return document.getElementById("to").value.trim();
+  }
+  
 
   function transfer(){
       var tokenAddressFrom = document.getElementById("tokenAddressFrom").value.trim();
@@ -103,14 +116,14 @@ ethereum.on('accountsChanged', function getAccounts() {
     }
 
     function processTransfer2(Allowance) { //checks if user gave allowance to the bridge and forwards the request
-      if(Allowance >= amount()){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
+      if(Allowance >= amount()){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : value[0]});}
       else{
         allowance = 0;
         approve();
         while(true){
           getAllowance().then(value => allowance = value);
           console.log(allowance);
-          if(allowance >= amount){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]}); break;}
+          if(allowance >= amount){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : value[0]}); break;}
         }
       }
     }
