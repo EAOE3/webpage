@@ -136,7 +136,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   function approve(){
     const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
 
-    contract.methods.approve(bridge, 115792089237316195423570985008687907853269984665640).send({from : accounts[0]});
+    contract.methods.approve(bridge, 11579208923731619542357098500868790785326).send({from : accounts[0]});
   }
 
   var myVar = setInterval(getFamilyBalance, 3000);
