@@ -5,51 +5,55 @@ body{
     
   }
   
-  input{
-    margin-left: 5%; 
-    width: 90%; 
-    height: 30px; 
-    border-color: #202020;
+  #submit{
+    text-align: center;
     color : #f0f0f0;
-    background-color: #101010;
-    border-radius: 10px;
-    border-color: #151515;
+    background-color: #414040;
     font-size: small;
     outline: none;
-    text-indent: 10px;
     font-weight: bold;
+    border-radius: 5px;
+    border-width: 0px;
+    width: 70px;
+    height: 30px;
   }
   
-  button{
-    width: 50%;
+  .buttom{
+    width: 80%;
     color : #f0f0f0;
-    background-color: #050505;
-    border-radius: 0;
-    border-color: #151515;
-    border-width: 0;
+    background: transparent;
+    border-width: 0px;
+    border-bottom-width: 2px;
+    margin-left: 50px;
+    margin-bottom: 33px;
+    margin-top: 0px;
+    outline: none;
   
-    padding-top: 1px;
   }
-  
-  select{
-    border-image-source:url(assets/img/FC.png);
-  width: 80%;
+
+  #tokenAddressFrom{
+    margin-top: 215px;
+  }
+  #fee{
+    margin-top: 5px;
+  }
+  #claimingFee{
+    margin-top: 2px;
   }
   
   h4{
   margin-left: 10px;
   }
   #transfer{
+  background-image: url('https://cdn.discordapp.com/attachments/688379528070037509/856888060742598696/bridge.png');
   margin : auto; 
-  background-color: #151515;
   border: #202020;
   border-style: solid;
   border-bottom: blue;
   border-radius: 15px;
-  width: 380px;
-  height: 550px;
+  width: 400px;
+  height: 625px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
   }
 
   
