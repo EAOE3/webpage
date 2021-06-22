@@ -54,24 +54,14 @@
 
 
   <div id="transfer">
-    <h2 style="text-align: center;"><b>CFBridge Transfer</b></h2>
     <br/>
-    <h6 style="margin-left: 5%;">Transfer Token Address</h6>
-    <input id="tokenAddressFrom" autocomplete="off">
+    <input id="tokenAddressFrom" class="buttom" autocomplete="off">
+    <input id="to" class="buttom" autocomplete="off">
+    <input id="amount" class="buttom" autocomplete="off">
+    <input id="fee" class="buttom" autocomplete="off">
+    <input id="claimingFee" class="buttom" autocomplete="off">
     <br/><br/>
-    <h6 style="margin-left: 5%;">Transfer To</h6>
-    <input id="to" autocomplete="off">
-    <br/><br/>
-    <h6 style="margin-left: 5%;">Amount</h6>
-    <input id="amount" autocomplete="off">
-    <br/><br/>
-    <h6 style="margin-left: 5%;">Transaction Fee (FT)</h6>
-    <input id="fee" autocomplete="off">
-    <br/><br/>
-    <h6 style="margin-left: 5%;">Claiming Fee (FT)</h6>
-    <input id="claimingFee" autocomplete="off">
-    <br/><br/>
-    <center><input id="submit" class="button" type="submit" value="Transfer" style="width: 150px;" onclick="transfer()"></center>
+    <center><input id="submit" type="submit" value="Transfer" style="width: 150px;" onclick="transfer()"></center>
     <br/>
     <center><h6 id="status"></h6></center>
 
