@@ -121,8 +121,11 @@ ethereum.on('accountsChanged', function getAccounts() {
 
     function processTransfer2(Allowance) { //checks if user gave allowance to the bridge and forwards the request
       if(Allowance >= amount()){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]});}
-      else{approve(); transferInProgress = true;}
+      else{
+        transferInProgress = true;
+      try{approve();}catch(err){transferInProgress = false;}
     }
+  }
 
   async function getFTbalance() {
     return thisContract.methods.balanceOf(accounts[0]).call();
