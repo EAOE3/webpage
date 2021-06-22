@@ -121,7 +121,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
     function processTransfer2(Allowance) { //checks if user gave allowance to the bridge and forwards the request
       if(Allowance >= amount()){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]});}
-      else{transferInProgress = true;}
+      else{approve(); transferInProgress = true;}
     }
 
   async function getFTbalance() {
@@ -145,7 +145,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   function approve(){
     const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
 
-    contract.methods.approve(bridge, 1).send({from : accounts[0]});
+    contract.methods.approve(bridge, 1000).send({from : accounts[0]});
   }
 
   var myVar = setInterval(checkFields, 3000);
@@ -188,7 +188,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   function allowanceCheck() {
-    if(allowance == 0){document.getElementById("submit").value = "Approve";}
+    if(allowance < amount()){document.getElementById("submit").value = "Approve";}
     else if(allowance >= amount()){document.getElementById("submit").value = "Transfer";}
   }
 
