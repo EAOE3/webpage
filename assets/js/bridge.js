@@ -6,7 +6,6 @@ var bridge = "0xa7492de8f0AF428A717F8188c1f33c59a58E439D";
 
 var allowance;
 
-var transferInProgress = false;
 
 async function enable(){
         return ethereum.enable();
@@ -83,20 +82,11 @@ ethereum.on('accountsChanged', function getAccounts() {
   
 
   function transfer(){
-    if(transferInProgress){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Please finish the previous transfer to proceed with this one"; return;}
-      
       var tokenAddressFrom = document.getElementById("tokenAddressFrom").value.trim();
       var to = document.getElementById("to").value.trim();
       var amount = document.getElementById("amount").value.trim();
       var fee = document.getElementById("fee").value.trim();
       var claimingFee = document.getElementById("claimingFee").value.trim();
-
-      document.getElementById("tokenAddressFrom").disabled = true;
-      document.getElementById("to").disabled = true;
-      document.getElementById("amount").disabled = true;
-      document.getElementById("fee").disabled = true;
-      document.getElementById("claimingFee").disabled = true;
-      document.getElementById("submit").disabled = true;
 
       try{
           amount - 1;
@@ -121,9 +111,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
     function processTransfer2(Allowance) { //checks if user gave allowance to the bridge and forwards the request
       if(Allowance >= amount()){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]});}
-      else{
-        transferInProgress = true;
-        approve();}
+      else{approve(); document.getElementById("status").style.color = "blue"; document.getElementById("status").innerHTML = "Approving funds";}
     }
   
 
@@ -149,20 +137,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   function approve(){
     const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
-
-    contract.methods.approve(bridge, 1000).send({from : accounts[0]}, 
-      function(err, transactionHash) {
-        if (!err){
-          console.log(transactionHash); 
-          if(transactionHash.result !== undefined){
-            console.log("https://kovan.etherscan.io/tx/"+transactionHash.result);
-            console.log("https://kovan.etherscan.io/tx/"+transactionHash.result);
-            console.log("Transaction Successfully Done!!!");
-          }
-          else{
-            console.log("User denied transaction signature.");
-          }
-        }}).then(console.log);
+    contract.methods.approve(bridge, 1000).send({from : accounts[0]}).then(console.log);
   }
 
   function check(result) {
@@ -170,38 +145,8 @@ ethereum.on('accountsChanged', function getAccounts() {
     if(!result){transferInProgress = false;}
   }
 
-  var myVar = setInterval(checkFields, 3000);
-  var myVar0 = setInterval(forwardTransfer, 3000);
   var myVar1 = setInterval(getTokenAllowance, 1500);
   var myVar2 = setInterval(allowanceCheck, 1500);
-
-  function checkFields() {
-    if(transferInProgress){
-      document.getElementById("tokenAddressFrom").disabled = true;
-      document.getElementById("to").disabled = true;
-      document.getElementById("amount").disabled = true;
-      document.getElementById("fee").disabled = true;
-      document.getElementById("claimingFee").disabled = true;
-      document.getElementById("submit").disabled = true;
-    }
-    else{
-      document.getElementById("tokenAddressFrom").disabled = false;
-      document.getElementById("to").disabled = false;
-      document.getElementById("amount").disabled = false;
-      document.getElementById("fee").disabled = false;
-      document.getElementById("claimingFee").disabled = false;
-      document.getElementById("submit").disabled = false;
-    }
-  }
-
-  function forwardTransfer() {
-    if(transferInProgress){
-      if(allowance >= amount()){
-        bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]});
-        transferInProgress = false;
-      }
-    }
-  }
 
   function getTokenAllowance() {
     var contract = document.getElementById("tokenAddressFrom").value.trim();
@@ -211,7 +156,9 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   function allowanceCheck() {
     if(allowance < amount()){document.getElementById("submit").value = "Approve";}
-    else if(allowance >= amount()){document.getElementById("submit").value = "Transfer";}
+    else if(allowance >= amount()){
+      document.getElementById("submit").value = "Transfer";
+      document.getElementById("status").style.color = "green"; document.getElementById("status").innerHTML = "Ready For Transfer";}
   }
 
 
