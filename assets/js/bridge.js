@@ -123,9 +123,11 @@ ethereum.on('accountsChanged', function getAccounts() {
       if(Allowance >= amount()){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]});}
       else{
         transferInProgress = true;
-      try{approve();}catch(err){transferInProgress = false;}
+        approve();}
     }
-  }
+  
+
+  
 
   async function getFTbalance() {
     return thisContract.methods.balanceOf(accounts[0]).call();
@@ -148,7 +150,11 @@ ethereum.on('accountsChanged', function getAccounts() {
   function approve(){
     const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
 
-    contract.methods.approve(bridge, 1000).send({from : accounts[0]});
+    contract.methods.approve(bridge, 1000).send({from : accounts[0]}).then(check(result));
+  }
+
+  function check(result) {
+    if(!result){transferInProgress = false;}
   }
 
   var myVar = setInterval(checkFields, 3000);
