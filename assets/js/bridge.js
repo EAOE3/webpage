@@ -11,6 +11,8 @@ async function enable(){
         return ethereum.enable();
       }
 
+      console.log(window.BinanceChain);
+      web3 = new Web3(window.web3.currentProvider);
 if (typeof window.BinanceChain !== 'undefined') {
   console.log(window.BinanceChain);
   console.log('MetaMask is installed!');
