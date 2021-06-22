@@ -4,6 +4,10 @@ var accounts;
 var FTcontract = "0x96Da00a87bbDbe1AF57512cfDb8D5Df73555B187";
 var bridge = "0xa7492de8f0AF428A717F8188c1f33c59a58E439D";
 
+var allowance;
+
+var transferInProgress = false;
+
 async function enable(){
         return ethereum.enable();
       }
@@ -79,12 +83,20 @@ ethereum.on('accountsChanged', function getAccounts() {
   
 
   function transfer(){
+    if(transferInProgress){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Please finish the previous transfer to proceed with this one"; return;}
+      
       var tokenAddressFrom = document.getElementById("tokenAddressFrom").value.trim();
       var to = document.getElementById("to").value.trim();
       var amount = document.getElementById("amount").value.trim();
       var fee = document.getElementById("fee").value.trim();
       var claimingFee = document.getElementById("claimingFee").value.trim();
 
+      document.getElementById("tokenAddressFrom").disabled = true;
+      document.getElementById("to").disabled = true;
+      document.getElementById("amount").disabled = true;
+      document.getElementById("fee").disabled = true;
+      document.getElementById("claimingFee").disabled = true;
+      document.getElementById("submit").disabled = true;
 
       try{
           amount - 1;
@@ -95,14 +107,6 @@ ethereum.on('accountsChanged', function getAccounts() {
       if(amount <= 0 || fee < 0 || claimingFee < 0 || !web3.utils.isAddress(tokenAddressFrom) || !web3.utils.isAddress(to) ){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input11"; return;}
 
       getBalance().then(value => processTransfer(value));
-
-      /*if(tokenAddressFrom == "0x0000000000000000000000000000000000000000"){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
-      else{
-        getAllowance(tokenAddressFrom, bridge).then(value => processAllowance(tokenAddressFrom, bridge, value, amount));
-        while(allowance < amount){
-          if(allowance >= amount){bridgeContract.methods.transfer(amount, fee ,claimingFee, to ,tokenAddressFrom).send({from : value[0]});}
-        }
-      }*/
     }
 
     function processTransfer(balance) { //checks if users balance is enough
@@ -117,15 +121,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
     function processTransfer2(Allowance) { //checks if user gave allowance to the bridge and forwards the request
       if(Allowance >= amount()){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]});}
-      else{
-        allowance = 0;
-        approve();
-        while(true){
-          getAllowance().then(value => allowance = value);
-          console.log(allowance);
-          if(allowance >= amount){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]}); break;}
-        }
-      }
+      else{transferInProgress = true;}
     }
 
   async function getFTbalance() {
@@ -152,19 +148,37 @@ ethereum.on('accountsChanged', function getAccounts() {
     contract.methods.approve(bridge, 1).send({from : accounts[0]});
   }
 
-  /*var myVar = setInterval(getFamilyBalance, 3000);
-  var myVar0 = setInterval(getTokenBalance, 3000);
-  var myVar1 = setInterval(getTokenAllowance, 3000);
-  var myVar2 = setInterval(allowanceCheck, 3000);*/
+  var myVar = setInterval(checkFields, 3000);
+  var myVar0 = setInterval(forwardTransfer, 3000);
+  var myVar1 = setInterval(getTokenAllowance, 1500);
+  var myVar2 = setInterval(allowanceCheck, 1500);
 
-  function getFamilyBalance() {
-    getFTbalance().then(result => balance = result);
+  function checkFields() {
+    if(transferInProgress){
+      document.getElementById("tokenAddressFrom").disabled = true;
+      document.getElementById("to").disabled = true;
+      document.getElementById("amount").disabled = true;
+      document.getElementById("fee").disabled = true;
+      document.getElementById("claimingFee").disabled = true;
+      document.getElementById("submit").disabled = true;
+    }
+    else{
+      document.getElementById("tokenAddressFrom").disabled = false;
+      document.getElementById("to").disabled = false;
+      document.getElementById("amount").disabled = false;
+      document.getElementById("fee").disabled = false;
+      document.getElementById("claimingFee").disabled = false;
+      document.getElementById("submit").disabled = false;
+    }
   }
 
-  function getTokenBalance() {
-    var contract = document.getElementById("tokenAddressFrom").value.trim();
-    getBalance().then(result => tokenBalance = result);
-    console.log("Bal : " + tokenBalance);
+  function forwardTransfer() {
+    if(transferInProgress){
+      if(allowance >= amount()){
+        bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]});
+        transferInProgress = false;
+      }
+    }
   }
 
   function getTokenAllowance() {
@@ -175,7 +189,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   function allowanceCheck() {
     if(allowance == 0){document.getElementById("submit").value = "Approve";}
-    else if(allowance == 1){document.getElementById("submit").value = "Transfer";}
+    else if(allowance >= amount()){document.getElementById("submit").value = "Transfer";}
   }
 
 
