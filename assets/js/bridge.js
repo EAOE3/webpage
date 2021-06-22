@@ -150,7 +150,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   function approve(){
     const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
 
-    contract.methods.approve(bridge, 1000).send({from : accounts[0]}).then(check(result));
+    contract.methods.approve(bridge, 1000).send({from : accounts[0]}).then(result => check(result));
   }
 
   function check(result) {
