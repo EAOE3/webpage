@@ -58,8 +58,8 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   function tokenAddressFrom() {
-    console.log(document.getElementById("tokenAddressFrom").value.trim());
-    console.log("wtf");
+    //console.log(document.getElementById("tokenAddressFrom").value.trim());
+    //console.log("wtf");
     return document.getElementById("tokenAddressFrom").value.trim();
   }
   
@@ -150,7 +150,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   function approve(){
     const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
 
-    contract.methods.approve(bridge, 1000).send({from : accounts[0]}).then(result => check(result));
+    contract.methods.approve(bridge, 1000).send({from : accounts[0]}).then(console.log);
   }
 
   function check(result) {
@@ -194,7 +194,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   function getTokenAllowance() {
     var contract = document.getElementById("tokenAddressFrom").value.trim();
     getAllowance().then(result => allowance = result);
-    console.log("allowance : " + allowance);
+    //console.log("allowance : " + allowance);
   }
 
   function allowanceCheck() {
