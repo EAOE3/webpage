@@ -150,7 +150,19 @@ ethereum.on('accountsChanged', function getAccounts() {
   function approve(){
     const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
 
-    contract.methods.approve(bridge, 1000).send({from : accounts[0]}).then(console.log);
+    contract.methods.approve(bridge, 1000).send({from : accounts[0]}, 
+      function(err, transactionHash) {
+        if (!err){
+          console.log(transactionHash); 
+          if(transactionHash.result !== undefined){
+            console.log("https://kovan.etherscan.io/tx/"+transactionHash.result);
+            console.log("https://kovan.etherscan.io/tx/"+transactionHash.result);
+            console.log("Transaction Successfully Done!!!");
+          }
+          else{
+            console.log("User denied transaction signature.");
+          }
+        }}).then(console.log);
   }
 
   function check(result) {
