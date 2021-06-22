@@ -154,6 +154,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   function check(result) {
+    console.log(result);
     if(!result){transferInProgress = false;}
   }
 
