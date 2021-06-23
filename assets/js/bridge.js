@@ -2,7 +2,7 @@ let web3;
 var accounts;
 
 var FTcontract = "0x96Da00a87bbDbe1AF57512cfDb8D5Df73555B187";
-var bridge = "0xa7492de8f0AF428A717F8188c1f33c59a58E439D";
+var bridge = "";
 
 var allowance;
 
