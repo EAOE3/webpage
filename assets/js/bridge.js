@@ -1,8 +1,8 @@
 let web3;
 var accounts;
 
-var FTcontract = "0x96Da00a87bbDbe1AF57512cfDb8D5Df73555B187";
-var bridge = "0xa7492de8f0AF428A717F8188c1f33c59a58E439D";
+var FTcontract = "0x1652557183585f1581A828FE59c9CbC551f774b8";
+var bridge = "0x025Ca32DA4430D22F9F6598e4e1b980B63171433";
 
 var allowance;
 
@@ -85,12 +85,14 @@ ethereum.on('accountsChanged', function getAccounts() {
   
 
   function transfer(){
+
       var tokenAddressFrom = document.getElementById("tokenAddressFrom").value.trim();
       var to = document.getElementById("to").value.trim();
       var amount = document.getElementById("amount").value.trim();
       var fee = document.getElementById("fee").value.trim();
       var claimingFee = document.getElementById("claimingFee").value.trim();
 
+      if(tokenAddressFrom == '0x0000000000000000000000000000000000000000'){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]}); return;}
       try{
           amount - 1;
           fee - 1;
@@ -140,7 +142,7 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   function approve(){
     const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
-    contract.methods.approve(bridge, 1000).send({from : accounts[0]}).then(console.log);
+    contract.methods.approve(bridge, 99999999999999).send({from : accounts[0]}).then(console.log);
   }
 
   function check(result) {
@@ -152,13 +154,17 @@ ethereum.on('accountsChanged', function getAccounts() {
   var myVar2 = setInterval(allowanceCheck, 1500);
 
   function getTokenAllowance() {
+    if(tokenAddressFrom == '0x0000000000000000000000000000000000000000'){allowance = }
     var contract = document.getElementById("tokenAddressFrom").value.trim();
     getAllowance().then(result => allowance = result);
     //console.log("allowance : " + allowance);
   }
 
   function allowanceCheck() {
-    if(allowance < amount()){document.getElementById("submit").value = "Approve";}
+    if(allowance < amount()){
+      document.getElementById("submit").value = "Approve";
+      document.getElementById("status").innerHTML = "";
+    }
     else if(allowance >= amount()){
       document.getElementById("submit").value = "Transfer";
       document.getElementById("status").style.color = "green"; document.getElementById("status").innerHTML = "Ready For Transfer";}
