@@ -53,7 +53,7 @@ ethereum.on('accountsChanged', function getAccounts() {
     }
 
   function amount() {
-    console.log("amount " + document.getElementById("amount").value);
+    console.log("amount " + document.getElementById("amount").value.trim());
     return document.getElementById("amount").value.trim();
   }
 
@@ -63,12 +63,12 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
   
   function fee() {
-    console.log("fee " + document.getElementById("fee").value);
+    console.log("fee " + document.getElementById("fee").value.trim());
     return document.getElementById("fee").value.trim();
   }
 
   function claimingFee() {
-    console.log("claimingFee " + document.getElementById("claimingFee").value);
+    console.log("claimingFee " + document.getElementById("claimingFee").value.trim());
     return document.getElementById("claimingFee").value.trim();
   }
 
@@ -79,7 +79,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   function to() {
-    console.log("to " + document.getElementById("to").value);
+    console.log("to " + document.getElementById("to").value.trim());
     return document.getElementById("to").value.trim();
   }
   
