@@ -154,7 +154,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   var myVar2 = setInterval(allowanceCheck, 1500);
 
   function getTokenAllowance() {
-    if(tokenAddressFrom == '0x0000000000000000000000000000000000000000'){allowance = }
+    if(tokenAddressFrom == '0x0000000000000000000000000000000000000000'){allowance = 99999999999999;}
     var contract = document.getElementById("tokenAddressFrom").value.trim();
     getAllowance().then(result => allowance = result);
     //console.log("allowance : " + allowance);
