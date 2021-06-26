@@ -155,9 +155,10 @@ ethereum.on('accountsChanged', function getAccounts() {
 
   function getTokenAllowance() {
     if(tokenAddressFrom == '0x0000000000000000000000000000000000000000'){allowance = 99999999999999;}
-    var contract = document.getElementById("tokenAddressFrom").value.trim();
-    getAllowance().then(result => allowance = result);
-    //console.log("allowance : " + allowance);
+    else{
+      var contract = document.getElementById("tokenAddressFrom").value.trim();
+      getAllowance().then(result => allowance = result);
+    }
   }
 
   function allowanceCheck() {
