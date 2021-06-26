@@ -2,7 +2,7 @@ let web3;
 var accounts;
 
 var FTcontract = "0x96Da00a87bbDbe1AF57512cfDb8D5Df73555B187";
-var bridge = "";
+var bridge = "0xa7492de8f0AF428A717F8188c1f33c59a58E439D";
 
 var allowance;
 
@@ -11,12 +11,7 @@ async function enable(){
         return ethereum.enable();
       }
 
-      detectEthereumProvider().then(console.log);
-      console.log(window.BinanceChain);
-      web3 = new Web3(window.BinanceChain.web3.currentProvider);
-
-if (typeof window.BinanceChain !== 'undefined') {
-  console.log(window.BinanceChain);
+if (typeof window.ethereum !== 'undefined') {
   console.log('MetaMask is installed!');
     web3 = new Web3(window.web3.currentProvider);
     enable();
