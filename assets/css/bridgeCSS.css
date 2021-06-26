@@ -4,7 +4,21 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     
   }
+
+select{
+  float: right;
+  margin-right: 5%;
+  margin-top: 5%;
+  border-radius: 5px;
+}  
   
+  #bridge{
+    height: 100%;
+    width: 200px;
+    float:left;
+    position: absolute;
+    background-color: goldenrod;
+  }
   #submit{
     text-align: center;
     color : #f0f0f0;
@@ -32,7 +46,7 @@ body{
   }
 
   #tokenAddressFrom{
-    margin-top: 215px;
+    margin-top: 193px;
   }
   #fee{
     margin-top: 5px;
@@ -47,8 +61,6 @@ body{
   #transfer{
   background-image: url('https://cdn.discordapp.com/attachments/688379528070037509/856888060742598696/bridge.png');
   margin : auto; 
-  border: #202020;
-  border-style: solid;
   border-bottom: blue;
   border-radius: 15px;
   width: 400px;
