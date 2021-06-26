@@ -53,22 +53,22 @@ ethereum.on('accountsChanged', function getAccounts() {
     }
 
   function amount() {
-    console.log("amount " + document.getElementById("amount"));
+    console.log("amount " + document.getElementById("amount").value);
     return document.getElementById("amount").value.trim();
   }
 
   function tokenAddressFrom() {
-    console.log("from " + document.getElementById("tokenAddressFrom"));
+    console.log("from " + document.getElementById("tokenAddressFrom").value);
     return document.getElementById("tokenAddressFrom").value.trim();
   }
   
   function fee() {
-    console.log("fee " + document.getElementById("fee"));
+    console.log("fee " + document.getElementById("fee").value);
     return document.getElementById("fee").value.trim();
   }
 
   function claimingFee() {
-    console.log("claimingFee " + document.getElementById("claimingFee"));
+    console.log("claimingFee " + document.getElementById("claimingFee").value);
     return document.getElementById("claimingFee").value.trim();
   }
 
@@ -79,7 +79,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   function to() {
-    console.log("to " + document.getElementById("to"));
+    console.log("to " + document.getElementById("to").value);
     return document.getElementById("to").value.trim();
   }
   
