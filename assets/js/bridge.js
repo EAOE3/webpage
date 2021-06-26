@@ -92,7 +92,7 @@ ethereum.on('accountsChanged', function getAccounts() {
       var fee = document.getElementById("fee").value.trim();
       var claimingFee = document.getElementById("claimingFee").value.trim();
 
-      if(tokenAddressFrom == "0x0000000000000000000000000000000000000000"){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]}); return;}
+      if(tokenAddressFrom == "0x0000000000000000000000000000000000000000"){bridgeContract.methods.transfer(amount, fee, claimingFee, to, tokenAddressFrom).send({from : accounts[0]}); return;}
       try{
           amount - 1;
           fee - 1;
