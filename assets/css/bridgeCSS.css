@@ -10,7 +10,19 @@ select{
   margin-right: 5%;
   margin-top: 5%;
   border-radius: 5px;
-}  
+  background-image: url('https://cdn.discordapp.com/attachments/688379528070037509/856888060742598696/bridge.png');
+  background-position-x: 100px;
+  outline: none;
+}
+
+h6{
+  padding-top: 6px;
+  color: #f0f0f0;
+}
+
+#cut2.h6{
+  float: right;
+}
   
   #bridge{
     height: 100%;
@@ -67,6 +79,27 @@ select{
   height: 625px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
+
+  #transfer-stats{
+    background-color: #2d2929;
+  margin : auto; 
+  border-bottom: blue;
+  border-radius: 15px;
+  width: 400px;
+  height: 100px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+#cut1{
+  float: left;
+  width: 200px;
+  height: 100px;
+}
+#cut2{
+  width: 200px;
+  height: 100px;
+  float: right;
+}
 
   
   #stake1{
