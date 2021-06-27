@@ -7,7 +7,8 @@ var selectedBridge = "BSCETH";
 
 var allowance;
 
-console.log(document.getElementById("bridge-select").value);
+console.log(request.getParameter("bridge-select"));
+
 async function enable(){
         return ethereum.enable();
       }
