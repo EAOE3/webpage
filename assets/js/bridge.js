@@ -3,10 +3,11 @@ var accounts;
 
 var FTcontract = "0x1652557183585f1581A828FE59c9CbC551f774b8";
 var bridge = "0x025Ca32DA4430D22F9F6598e4e1b980B63171433";
+var selectedBridge = "BSCETH";
 
 var allowance;
 
-
+console.log(document.getElementById("bridge-select").value);
 async function enable(){
         return ethereum.enable();
       }
@@ -150,8 +151,13 @@ ethereum.on('accountsChanged', function getAccounts() {
     if(!result){transferInProgress = false;}
   }
 
+  function getName() {
+    const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
+    return contract.methods.name().call();
+  }
   var myVar1 = setInterval(getTokenAllowance, 1500);
   var myVar2 = setInterval(allowanceCheck, 1500);
+  var myVar3 = setInterval(loadData, 1500);
 
   function getTokenAllowance() {
     if(tokenAddressFrom() == "0x0000000000000000000000000000000000000000"){allowance = 99999999999999;}
@@ -169,6 +175,10 @@ ethereum.on('accountsChanged', function getAccounts() {
     else if(allowance >= amount()){
       document.getElementById("submit").value = "Transfer";
       document.getElementById("status").style.color = "green"; document.getElementById("status").innerHTML = "Ready For Transfer";}
+  }
+
+  function loadData() {
+    getName().then(value => document.getElementById("tokenSymbol").innerHTML = value;)
   }
 
 
