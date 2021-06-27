@@ -36,7 +36,7 @@
 <body>
 
   <div id="transfer">
-    <select name="pets" id="pet-select">
+    <select name="pets" id="bridge-select">
       <option value="BSCETH">BSC->ETH</option>
       <option value="ETHBSC">ETH->BSC</option>
   </select>
@@ -49,8 +49,20 @@
     <center><input id="submit" type="submit" value="Transfer" style="width: 150px;" onclick="transfer()"></center>
     <br/>
     <center><h6 id="status"></h6></center>
-
 	<p style="text-align: center; margin-left: auto; margin-right: auto;"><h8 style="text-align: center;" id="address"></h8></p>
+  </div>
+  <br/>
+  <div id="transfer-stats">
+    <div id="cut1">
+    <h6>Transfering : </h6>
+    <h6>Supported By Bridge : </h6>
+    <h6>Fully Inter Blockchain : </h6>
+    </div>
+    <div id="cut2">
+    <h6 id="tokenSymbol">USDT</h6>
+    <h6 id="supported">USDT</h6>
+    <h6 id="interBlockchain">USDT</h6>
+    </div>
   </div>
   <br/><br/>
 
