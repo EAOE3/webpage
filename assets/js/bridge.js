@@ -178,7 +178,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   function loadData() {
-    getName().then(value => document.getElementById("tokenSymbol").innerHTML = value;)
+    getName().then(value => document.getElementById("tokenSymbol").innerHTML = value);
   }
 
 
