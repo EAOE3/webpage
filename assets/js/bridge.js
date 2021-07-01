@@ -4,10 +4,12 @@ var accounts;
 var FTcontract = "0x1652557183585f1581A828FE59c9CbC551f774b8";
 var bridge = "0x025Ca32DA4430D22F9F6598e4e1b980B63171433";
 var selectedBridge = "BSCETH";
+var selectedToken;
+var selectedTokenSymbol;
+
+addToken('tttt', 'BUSD', 'test');
 
 var allowance;
-
-console.log(request.getParameter("bridge-select"));
 
 async function enable(){
         return ethereum.enable();
@@ -182,4 +184,44 @@ ethereum.on('accountsChanged', function getAccounts() {
     getName().then(value => document.getElementById("tokenSymbol").innerHTML = value);
   }
 
+  function addToken(tokenAddress, symbol, name) {
 
+    console.log("huh");
+    
+    let div = document.createElement('div');
+    let hr = document.createElement('hr');
+    let img = document.createElement('img');
+    let div1 = document.createElement('div');
+    let div2 = document.createElement('div');
+
+    div.id = 'token-token';
+    hr.id = 'token-token-empty';
+    img.id = 'token-token-icon';
+    div1.id = 'token-token-symbol';
+    div2.id = 'token-token-name';
+
+    img.src = ".\\assets\\img\\" + symbol + ".png"
+    div1.innerHTML = symbol;
+    div2.innerHTML = name;
+
+    div.onclick = setToken(tokenAddress, symbol);
+
+    //div.onclick = setToken(tokenAddress, symbol);
+
+    div.appendChild(img);
+    div.appendChild(hr);
+    div.appendChild(div1);
+    div.innerHTML += "<br/>";
+    div.appendChild(div2);
+
+    console.log("wtf");
+    document.getElementById('token-select').appendChild(div);
+    console.log("wtf1");
+
+  }
+
+  function setToken(tokenAddress, symbol) {
+    selectedToken = tokenAddress;
+    selectedTokenSymbol = symbol;
+    document.getElementById('token-choose').style.visibility = hidden;
+  }
