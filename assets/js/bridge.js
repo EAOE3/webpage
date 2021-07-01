@@ -225,5 +225,5 @@ ethereum.on('accountsChanged', function getAccounts() {
   function setToken(tokenAddress, symbol) {
     selectedToken = tokenAddress;
     selectedTokenSymbol = symbol;
-    document.getElementById('token-choose').style.visibility = hidden;
+    document.getElementById('token-choose').style.visibility = "hidden";
   }
