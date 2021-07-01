@@ -15,7 +15,7 @@ async function enable(){
         return BinanceChain.enable();
       }
 
-      console.log(window.BinanceChain);
+      console.log("BSC " + window.BinanceChain);
 
 if (typeof window.BinanceChain !== 'undefined') {
   console.log('BinanceChain is installed!');
