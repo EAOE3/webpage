@@ -28,19 +28,106 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/bridgeCSS.css" rel="stylesheet">
 
-  <script type="text/javascript" src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
-  <script type="text/javascript" src=".\assets\js\bridge.js"></script>
-  <script type="text/javascript" src=".\assets\js\stakingDesign.js"></script>
+  
 </head>
 
 <body>
 
+  <div id="token-choose">
+    <div id="token-choose-body">
+      <h3 id="select-a-token">Select a token</h3>
+      <img id="close-x" src=".\assets\img\close-x.png">
+      <br/>
+      <hr style="height: 1px; color: aliceblue; margin-top: 35px;"/>
+      <input id="token-input" placeholder="Search by name or paste address">
+
+      <div id="token-select">
+        <div id="token-token">
+          <hr id="token-token-empty"/>
+          <img id="token-token-icon" src=".\assets\img\BUSD.png">
+          <div id="token-token-symbol">BUSD</div><br>
+          <div id="token-token-name"> Binance USD</div>
+        </div>
+        <div id="token-token">
+          <hr id="token-token-empty"/>
+          <img id="token-token-icon" src=".\assets\img\BUSD.png">
+          <div id="token-token-symbol">BUSD</div><br>
+          <div id="token-token-name"> Binance USD</div>
+        </div>
+        <div id="token-token">
+          <hr id="token-token-empty"/>
+          <img id="token-token-icon" src=".\assets\img\BUSD.png">
+          <div id="token-token-symbol">BUSD</div><br>
+          <div id="token-token-name"> Binance USD</div>
+        </div>
+        <div id="token-token">
+          <hr id="token-token-empty"/>
+          <img id="token-token-icon" src=".\assets\img\BUSD.png">
+          <div id="token-token-symbol">BUSD</div><br>
+          <div id="token-token-name"> Binance USD</div>
+        </div>
+        <div id="token-token">
+          <hr id="token-token-empty"/>
+          <hr id="token-token-empty"/>
+          <img id="token-token-icon" src=".\assets\img\BUSD.png">
+          <div id="token-token-symbol">BUSD</div><br>
+          <div id="token-token-name"> Binance USD</div>
+        </div>
+        <div id="token-token">
+          <hr id="token-token-empty"/>
+          <hr id="token-token-empty"/>
+          <img id="token-token-icon" src=".\assets\img\BUSD.png">
+          <div id="token-token-symbol">BUSD</div><br>
+          <div id="token-token-name"> Binance USD</div>
+        </div>
+        <div id="token-token">
+          <hr id="token-token-empty"/>
+          <img id="token-token-icon" src=".\assets\img\BUSD.png">
+          <div id="token-token-symbol">BUSD</div><br>
+          <div id="token-token-name"> Binance USD</div>
+        </div>
+        <div id="token-token">
+          <hr id="token-token-empty"/>
+          <img id="token-token-icon" src=".\assets\img\BUSD.png">
+          <div id="token-token-symbol">BUSD</div><br>
+          <div id="token-token-name"> Binance USD</div>
+        </div>
+        <div id="token-token">
+          <hr id="token-token-empty"/>
+          <img id="token-token-icon" src=".\assets\img\BUSD.png">
+          <div id="token-token-symbol">BUSD</div><br>
+          <div id="token-token-name"> Binance USD</div>
+        </div>
+        <div id="token-token">
+          <hr id="token-token-empty"/>
+          <img id="token-token-icon" src=".\assets\img\BUSD.png">
+          <div id="token-token-symbol">BUSD</div><br>
+          <div id="token-token-name"> Binance USD</div>
+        </div>
+        <div id="token-token">
+          <hr id="token-token-empty"/>
+          <img id="token-token-icon" src=".\assets\img\BUSD.png">
+          <div id="token-token-symbol">BUSD</div><br>
+          <div id="token-token-name"> Binance USD</div>
+        </div>
+      
+      
+
+      </div>
+    </div>
+  </div>
   <div id="transfer">
+
     <select name="pets" id="bridge-select">
       <option value="BSCETH">BSC->ETH</option>
       <option value="ETHBSC">ETH->BSC</option>
   </select>
-    <input id="tokenAddressFrom" class="buttom" autocomplete="off">
+  <br/>
+  <div id="token">
+    <img  id="token-icon" src=".\assets\img\BUSD.png"><h6 id="token-name">BUSD</h6>
+    <img id="downArrow" src=".\assets\img\white-transparent-arrow.png">
+  </div>
+
     <input id="to" class="buttom" autocomplete="off">
     <input id="amount" class="buttom" autocomplete="off">
     <input id="fee" class="buttom" autocomplete="off">
@@ -52,18 +139,6 @@
 	<p style="text-align: center; margin-left: auto; margin-right: auto;"><h8 style="text-align: center;" id="address"></h8></p>
   </div>
   <br/>
-  <div id="transfer-stats">
-    <div id="cut1">
-    <h6>Transfering : </h6>
-    <h6>Supported By Bridge : </h6>
-    <h6>Fully Inter Blockchain : </h6>
-    </div>
-    <div id="cut2">
-    <h6 id="tokenSymbol">USDT</h6>
-    <h6 id="supported">USDT</h6>
-    <h6 id="interBlockchain">USDT</h6>
-    </div>
-  </div>
   <br/><br/>
 
 
@@ -87,6 +162,10 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script type="text/javascript" src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
+  <script type="text/javascript" src=".\assets\js\bridge.js"></script>
+  <script type="text/javascript" src=".\assets\js\stakingDesign.js"></script>
 
 </body>
 
