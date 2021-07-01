@@ -16,14 +16,14 @@ async function enable(){
       }
 
 if (typeof window.BinanceChain !== 'undefined') {
-  console.log('MetaMask is installed!');
-    web3 = new Web3(window.web3.currentProvider);
+  console.log('BinanceChain is installed!');
+    web3 = new Web3(window.BinanceChain.currentProvider);
     enable();
-	web3.eth.net.getId().then(console.log);
+	BinanceChain.eth.net.getId().then(console.log);
 	getMetMaskAccounts().then(variable => accounts = variable);
 }
 else{
-    alert("Please install Meta Mask to interact with this webpage")
+    alert("Please install BinanceChain to interact with this webpage")
 }
 
 ethereum.on('accountsChanged', function getAccounts() {
@@ -48,7 +48,7 @@ ethereum.on('accountsChanged', function getAccounts() {
     console.log(accounts[0]);
   }
   async function getMetMaskAccounts(){
-	  return window.ethereum.request({ method: 'eth_requestAccounts' });
+	  return window.BinanceChain.request({ method: 'eth_requestAccounts' });
   }
   
   async function getAccounts(){
