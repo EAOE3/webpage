@@ -15,6 +15,8 @@ async function enable(){
         return ethereum.enable();
       }
 
+      console.log(window.BinanceChain);
+      
 if (typeof window.BinanceChain !== 'undefined') {
   console.log('BinanceChain is installed!');
     web3 = new Web3(window.BinanceChain.currentProvider);
