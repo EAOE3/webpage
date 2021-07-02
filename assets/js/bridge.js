@@ -7,7 +7,7 @@ var selectedBridge = "BSCETH";
 var selectedToken;
 var selectedTokenSymbol;
 
-addToken('tttt', 'BUSD', 'test');
+addToken('tttt', 'MATIC', 'Polygon');
 
 var allowance;
 
@@ -204,7 +204,7 @@ ethereum.on('accountsChanged', function getAccounts() {
     div1.innerHTML = symbol;
     div2.innerHTML = name;
 
-    div.onclick = "setToken(tokenAddress, symbol)";
+    div.onclick = 'setToken(tokenAddress, symbol)';
 
     //div.onclick = setToken(tokenAddress, symbol);
 
@@ -223,5 +223,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   function setToken(tokenAddress, symbol) {
     selectedToken = tokenAddress;
     selectedTokenSymbol = symbol;
+    document.getElementById('token-icon').src = "assets/img/" + symbol + ".png";
+    document.getElementById('token-name').innerHTML = symbol;
     document.getElementById('token-choose').style.visibility = "hidden";
   }
