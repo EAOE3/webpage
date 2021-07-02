@@ -184,6 +184,9 @@ ethereum.on('accountsChanged', function getAccounts() {
     getName().then(value => document.getElementById("tokenSymbol").innerHTML = value);
   }
 
+  function showTokens() {
+    document.getElementById("token-choose").value.visibility = visible;
+  }
   function addToken(tokenAddress, symbol, name) {
 
     console.log("huh");
