@@ -211,8 +211,8 @@ ethereum.on('accountsChanged', function getAccounts() {
 
     //div.onclick = setToken(tokenAddress, symbol);
 
-    div.appendChild(img);
     div.appendChild(hr);
+    div.appendChild(img);
     div.appendChild(div1);
     div.innerHTML += "<br/>";
     div.appendChild(div2);
