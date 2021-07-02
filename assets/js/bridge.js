@@ -204,9 +204,7 @@ ethereum.on('accountsChanged', function getAccounts() {
     div1.innerHTML = symbol;
     div2.innerHTML = name;
 
-    div.onclick = function(event) {
-      console.log(event);
-    }
+    div.onclick = function(event) {setToken(tokenAddress, symbol);}
 
     //div.onclick = setToken(tokenAddress, symbol);
 
