@@ -91,6 +91,10 @@ h6{
     border-radius: 15px;
   }
 
+  #token:hover{
+    cursor:pointer;
+  }
+
   #token-icon{
     float: left;
     margin-left: 10px;
@@ -245,7 +249,6 @@ h6{
   #stake2{
     display: none;
   }  
-  
   
   
   
