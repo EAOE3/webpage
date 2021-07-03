@@ -244,7 +244,7 @@ function readTextFile(file) {
 
   fetch('assets/Tokens.txt')
   .then(response => response.text())
-  .then(text => console.log);
+  .then(text => console.log(text));
 
     fetch('assets/Tokens.txt')
   .then(response => response.text())
