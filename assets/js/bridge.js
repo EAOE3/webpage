@@ -7,6 +7,8 @@ var selectedBridge = "BSCETH";
 var selectedToken;
 var selectedTokenSymbol;
 
+var tokensSavedData = "";
+
 addToken('tttt', 'MATIC', 'Polygon');
 
 var allowance;
@@ -249,9 +251,21 @@ function readTextFile(file) {
 
 function loadTokens(data) {
   var newData = data + "";
+  tokensData = newData;
   var tokensData = newData.split(':');
 
   for(t = 0; t < tokensData.length; t += 3){
     addToken(tokensData[t], tokensData[t+1], tokensData[t+2]);
+  }
+}
+
+function search(){
+  document.getElementById("token-select").innerHTML = "";
+  var tokensData = tokensSavedData.split(':');
+  var input = document.getElementById("token-select").value;
+  for(t = 0; t < tokensData.length; t += 3){
+    if(tokensData[t+1].includes(t)){
+      addToken(tokensData[t], tokensData[t+1], tokensData[t+2]);
+    }
   }
 }
