@@ -235,31 +235,20 @@ ethereum.on('accountsChanged', function getAccounts() {
     document.getElementById('token-choose').style.visibility = "hidden";
   }
 
-  function loadTokens() {
-    var tokens = readTextFile("assets/Tokens.txt");
-    console.log(tokens);
+function startTokensLoading() {
+    readTextFile("assets/Tokens.txt");
   }
 
   loadTokens();
-  fetch('assets/Tokens.txt')
+  
+function readTextFile(file) {
+
+    fetch('assets/Tokens.txt')
   .then(response => response.text())
-  .then(text => console.log(text))
+  .then(text => loadTokens(text));
+}
 
-  function readTextFile(file) {
-
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                alert(allText);
-                return allText;
-            }
-        }
-    }
-    rawFile.send(null);
+function loadTokens(tokens) {
+  var tokensData = tokens.split(":");
+  console.log(tokensData[0]); 
 }
