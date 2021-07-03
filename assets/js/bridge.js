@@ -190,6 +190,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   function hideTokens() {
     document.getElementById("token-choose").style.visibility = "hidden";
   }
+
   function addToken(tokenAddress, symbol, name) {
 
     console.log("huh");
@@ -233,3 +234,28 @@ ethereum.on('accountsChanged', function getAccounts() {
     document.getElementById('token-name').innerHTML = symbol;
     document.getElementById('token-choose').style.visibility = "hidden";
   }
+
+  function loadTokens() {
+    var tokens = readTextFile("assets/Tokens.txt");
+    console.log(tokens);
+  }
+
+  loadTokens();
+
+  function readTextFile(file) {
+    
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+}
