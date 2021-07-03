@@ -244,7 +244,7 @@ function readTextFile(file) {
 
     fetch('assets/Tokens.txt')
   .then(response => response.text())
-  .then(text => loadTokens(text));
+  .then(text => loadTokens(text.toString()));
 }
 
 function loadTokens(tokens) {
