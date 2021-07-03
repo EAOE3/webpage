@@ -242,11 +242,6 @@ function startTokensLoading() {
   
 function readTextFile(file) {
 
-  console.log("fuvk");
-  fetch('assets/Tokens.txt')
-  .then(response => response.text())
-  .then(text => console.log(text));
-
     fetch('assets/Tokens.txt')
   .then(response => response.text())
   .then(text => loadTokens(text));
@@ -254,8 +249,9 @@ function readTextFile(file) {
 
 function loadTokens(data) {
   var newData = data + "";
-  console.log(data);
-  console.log(newData);
   var tokensData = newData.split(':');
-  console.log(tokensData[0]); 
+
+  for(t = 0; t < tokensData.length; t += 3){
+    addToken(tokensData[t], tokensData[t+1], tokensData[t+2]);
+  }
 }
