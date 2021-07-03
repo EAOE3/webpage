@@ -251,7 +251,7 @@ function readTextFile(file) {
 
 function loadTokens(data) {
   var newData = data + "";
-  tokensData = newData;
+  tokensSavedData = newData;
   var tokensData = newData.split(':');
 
   for(t = 0; t < tokensData.length; t += 3){
