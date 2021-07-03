@@ -4,7 +4,7 @@ var accounts;
 var FTcontract = "0x1652557183585f1581A828FE59c9CbC551f774b8";
 var bridge = "0x025Ca32DA4430D22F9F6598e4e1b980B63171433";
 var selectedBridge = "BSCETH";
-var selectedToken;
+var selectedToken = "FTaddress";
 
 
 var allowance;
