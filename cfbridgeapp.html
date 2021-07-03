@@ -1,101 +1,261 @@
-<!DOCTYPE html>
-<html lang="en">
+let web3;
+var accounts;
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+var FTcontract = "0x1652557183585f1581A828FE59c9CbC551f774b8";
+var bridge = "0x025Ca32DA4430D22F9F6598e4e1b980B63171433";
+var selectedBridge = "BSCETH";
+var selectedToken;
+var selectedTokenSymbol;
 
-  <title>Family Token Staking</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+addToken('tttt', 'MATIC', 'Polygon');
 
-  <!-- Favicons -->
-  <link href="assets/img/FC.png" rel="icon" type="image/png">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+var allowance;
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+async function enable(){
+        return ethereum.enable();
+      }
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+if (typeof window.ethereum !== 'undefined') {
+  console.log('MetaMask is installed!');
+    web3 = new Web3(window.web3.currentProvider);
+    enable();
+	web3.eth.net.getId().then(console.log);
+	getMetMaskAccounts().then(variable => accounts = variable);
+}
+else{
+    alert("Please install Meta Mask to interact with this webpage")
+}
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/bridgeCSS.css" rel="stylesheet">
+ethereum.on('accountsChanged', function getAccounts() {
+	getMetMaskAccounts().then(variable => accounts = variable);
+  });
+
+
+  var abi = [{"inputs":[{"internalType":"address","name":"FTcontract","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"OrdersCount","outputs":[{"internalType":"uint256","name":"SendOrdersCount","type":"uint256"},{"internalType":"uint256","name":"ReceiveOrdersCount","type":"uint256"},{"internalType":"uint256","name":"RequestTokenOrdersCount","type":"uint256"},{"internalType":"uint256","name":"AddTokenOrdersCount","type":"uint256"},{"internalType":"uint256","name":"ProposalsCount","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"main","type":"address"},{"internalType":"address","name":"parallel","type":"address"},{"internalType":"uint256","name":"fee","type":"uint256"}],"name":"addToken","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"ID","type":"uint256"},{"internalType":"uint256","name":"ID1","type":"uint256"}],"name":"addTokenAndProposalStats","outputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"main","type":"address"},{"internalType":"address","name":"parallel","type":"address"},{"internalType":"uint256","name":"fee","type":"uint256"},{"internalType":"address","name":"creator","type":"address"},{"internalType":"address","name":"main1","type":"address"},{"internalType":"address","name":"parallel1","type":"address"},{"internalType":"uint256","name":"fee1","type":"uint256"},{"internalType":"bool","name":"signed","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"main","type":"address"},{"internalType":"address","name":"parallel","type":"address"},{"internalType":"uint256","name":"fee","type":"uint256"}],"name":"addTokenOrderProgress","outputs":[{"internalType":"bool","name":"signed","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"node","type":"address"}],"name":"bridgeAndNodeStats","outputs":[{"internalType":"uint256","name":"nodes","type":"uint256"},{"internalType":"uint256","name":"stakedFT","type":"uint256"},{"internalType":"uint256","name":"staked","type":"uint256"},{"internalType":"uint256","name":"verifiedBlock","type":"uint256"},{"internalType":"uint256","name":"locked","type":"uint256"},{"internalType":"uint256","name":"lockedFT","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"receiver","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"fee","type":"uint256"},{"internalType":"uint256","name":"claimingFee","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"},{"internalType":"address","name":"tokenAddressFrom","type":"address"}],"name":"claim","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"contractAddress","type":"address"}],"name":"contractsOf","outputs":[{"internalType":"address","name":"parallelContract","type":"address"},{"internalType":"address","name":"mainContract","type":"address"},{"internalType":"address","name":"parallelContractOfThat","type":"address"},{"internalType":"address","name":"mainContractOfThat","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"ThisMain","type":"address"},{"internalType":"address","name":"ThatParallel","type":"address"},{"internalType":"uint256","name":"fee","type":"uint256"}],"name":"createProposal","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"receiver","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"fee","type":"uint256"},{"internalType":"uint256","name":"claimingFee","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"},{"internalType":"address","name":"tokenAddressFrom","type":"address"}],"name":"deposit","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"receiver","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"fee","type":"uint256"},{"internalType":"uint256","name":"claimingFee","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"},{"internalType":"address","name":"tokenAddressFrom","type":"address"}],"name":"depositOrderProgress","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"ID","type":"uint256"},{"internalType":"uint256","name":"ID1","type":"uint256"}],"name":"doubleSendStats","outputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"receiver","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"fee","type":"uint256"},{"internalType":"uint256","name":"claimingFee","type":"uint256"},{"internalType":"address","name":"tokenAddressFrom","type":"address"},{"internalType":"address","name":"sender1","type":"address"},{"internalType":"address","name":"receiver1","type":"address"},{"internalType":"uint256","name":"amount1","type":"uint256"},{"internalType":"uint256","name":"fee1","type":"uint256"},{"internalType":"uint256","name":"claimingFee1","type":"uint256"},{"internalType":"address","name":"tokenAddressFrom1","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"node","type":"address"}],"name":"lock","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"receiver","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"fee","type":"uint256"},{"internalType":"uint256","name":"claimingFee","type":"uint256"},{"internalType":"uint256","name":"index","type":"uint256"},{"internalType":"address","name":"tokenAddressFrom","type":"address"}],"name":"orderProgress","outputs":[{"internalType":"uint256","name":"votedFT","type":"uint256"},{"internalType":"bool","name":"processed","type":"bool"},{"internalType":"bool","name":"claimed","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"main","type":"address"},{"internalType":"address","name":"parallel","type":"address"},{"internalType":"uint256","name":"fee","type":"uint256"}],"name":"requestToken","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"stake","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"fee","type":"uint256"},{"internalType":"uint256","name":"claimingFee","type":"uint256"},{"internalType":"address","name":"to","type":"address"},{"internalType":"address","name":"tokenAddressFrom","type":"address"}],"name":"transfer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"unStake","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"unlock","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"verify","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"ID","type":"uint256"}],"name":"voteOnProposal","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"}]
+  ;
+  var ERC20abi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"staker","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Stake","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"unstaker","type":"address"},{"indexed":false,"internalType":"uint256","name":"unstakingamount","type":"uint256"}],"name":"Unstake","type":"event"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowances","outputs":[{"internalType":"uint256","name":"allowanceAmount","type":"uint256"},{"internalType":"bool","name":"stakingAllowence","type":"bool"},{"internalType":"bool","name":"fullAllowence","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"bridge","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"burn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"address","name":"recipient1","type":"address"},{"internalType":"address","name":"recipient2","type":"address"},{"internalType":"address","name":"recipient3","type":"address"},{"internalType":"address","name":"recipient4","type":"address"},{"internalType":"address","name":"recipient5","type":"address"},{"internalType":"address","name":"recipient6","type":"address"},{"internalType":"address","name":"recipient7","type":"address"},{"internalType":"address","name":"recipient8","type":"address"},{"internalType":"address","name":"recipient9","type":"address"},{"internalType":"address","name":"recipient10","type":"address"}],"name":"decupleTransfer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"recipient1","type":"address"},{"internalType":"uint256","name":"amount1","type":"uint256"},{"internalType":"address","name":"recipient2","type":"address"},{"internalType":"uint256","name":"amount2","type":"uint256"}],"name":"doubleTransfer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getOwner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"giveFullAllowance","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"giveStakingAllowance","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"recipient1","type":"address"},{"internalType":"uint256","name":"amount1","type":"uint256"},{"internalType":"address","name":"recipient2","type":"address"},{"internalType":"uint256","name":"amount2","type":"uint256"},{"internalType":"address","name":"recipient3","type":"address"},{"internalType":"uint256","name":"amount3","type":"uint256"},{"internalType":"address","name":"recipient4","type":"address"},{"internalType":"uint256","name":"amount4","type":"uint256"}],"name":"quadrupleTransfer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"recipient1","type":"address"},{"internalType":"uint256","name":"amount1","type":"uint256"},{"internalType":"address","name":"recipient2","type":"address"},{"internalType":"uint256","name":"amount2","type":"uint256"},{"internalType":"address","name":"recipient3","type":"address"},{"internalType":"uint256","name":"amount3","type":"uint256"},{"internalType":"address","name":"recipient4","type":"address"},{"internalType":"uint256","name":"amount4","type":"uint256"},{"internalType":"address","name":"recipient5","type":"address"},{"internalType":"uint256","name":"amount5","type":"uint256"}],"name":"quintupleTransfer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient1","type":"address"},{"internalType":"uint256","name":"amount1","type":"uint256"},{"internalType":"address","name":"recipient2","type":"address"},{"internalType":"uint256","name":"amount2","type":"uint256"},{"internalType":"address","name":"recipient3","type":"address"},{"internalType":"uint256","name":"amount3","type":"uint256"},{"internalType":"address","name":"recipient4","type":"address"},{"internalType":"uint256","name":"amount4","type":"uint256"},{"internalType":"address","name":"recipient5","type":"address"},{"internalType":"uint256","name":"amount5","type":"uint256"}],"name":"quintupleTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"refreshStaking","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"refreshStakingFor","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"removeFullAllowance","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"removeStakingAllowance","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"bridge","type":"address"}],"name":"setBridge","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"stakeFT","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"stakeFTfor","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"stakingStats","outputs":[{"internalType":"uint256","name":"stakingAmount","type":"uint256"},{"internalType":"uint256","name":"stakingBlock","type":"uint256"},{"internalType":"uint256","name":"rewards","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"recipient1","type":"address"},{"internalType":"uint256","name":"amount1","type":"uint256"},{"internalType":"address","name":"recipient2","type":"address"},{"internalType":"uint256","name":"amount2","type":"uint256"},{"internalType":"address","name":"recipient3","type":"address"},{"internalType":"uint256","name":"amount3","type":"uint256"}],"name":"tripleTransfer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"unstakeAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"unstakeAllfor","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"unstakeFT","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"unstakeFTfor","outputs":[],"stateMutability":"nonpayable","type":"function"}]
+  ;
+  const bridgeContract = new web3.eth.Contract(abi, bridge)
+  const thisContract = new web3.eth.Contract(ERC20abi, FTcontract);
+
+  getFTbalance().then(console.log);
+  //getMetMaskAccounts().then(val => console.log(val[0]));
+  //getAllowance("0xc8aa1adc636d2369f3c9e94fef0705e2b2ba235c", "0x2DBE938e546357D9738087C39C54C96FEdb23e11").then(bal => console.log(bal));
+  //console.log(getAllownce());
+  //getAllownce().then(console.log);
+
+  function displayAccount(){
+    console.log(accounts[0]);
+  }
+  async function getMetMaskAccounts(){
+	  return window.ethereum.request({ method: 'eth_requestAccounts' });
+  }
+  
+  async function getAccounts(){
+		getMetMaskAccounts().then(variable => accounts = variable);
+      return accounts;
+    }
+
+  function amount() {
+    console.log("amount " + document.getElementById("amount").value.trim());
+    return document.getElementById("amount").value.trim();
+  }
+
+  function tokenAddressFrom() {
+    console.log("from " + document.getElementById("tokenAddressFrom").value);
+    return document.getElementById("tokenAddressFrom").value.trim();
+  }
+  
+  function fee() {
+    console.log("fee " + document.getElementById("fee").value.trim());
+    return document.getElementById("fee").value.trim();
+  }
+
+  function claimingFee() {
+    console.log("claimingFee " + document.getElementById("claimingFee").value.trim());
+    return document.getElementById("claimingFee").value.trim();
+  }
+
+  function totalFees() {
+    var fee = document.getElementById("fee").value.trim();
+    var claimingFee = document.getElementById("claimingFee").value.trim();
+    return fee + claimingFee * 10000000000;
+  }
+
+  function to() {
+    console.log("to " + document.getElementById("to").value.trim());
+    return document.getElementById("to").value.trim();
+  }
+  
+
+  function transfer(){
+
+      var tokenAddressFrom = document.getElementById("tokenAddressFrom").value.trim();
+      var to = document.getElementById("to").value.trim();
+      var amount = document.getElementById("amount").value.trim();
+      var fee = document.getElementById("fee").value.trim();
+      var claimingFee = document.getElementById("claimingFee").value.trim();
+
+      if(tokenAddressFrom == "0x0000000000000000000000000000000000000000"){bridgeContract.methods.transfer(amount, fee, claimingFee, to, tokenAddressFrom).send({from : accounts[0]}); return;}
+      try{
+          amount - 1;
+          fee - 1;
+          claimingFee - 1;
+      }catch(error){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input0";}
+
+      if(amount <= 0 || fee < 0 || claimingFee < 0 || !web3.utils.isAddress(tokenAddressFrom) || !web3.utils.isAddress(to) ){document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Invalid input11"; return;}
+
+      getBalance().then(value => processTransfer(value));
+    }
+
+    function processTransfer(balance) { //checks if users balance is enough
+      if(balance >= amount()){getFTbalance().then(value => processTransfer1(value));}
+      else{document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Insufficient Balance";}
+    }
+
+    function processTransfer1(FTbalance) { //checks if user has enough FT to cover fees
+      if(FTbalance >= totalFees()){getAllowance().then(value => processTransfer2(value));}
+      else{document.getElementById("status").style.color = "red"; document.getElementById("status").innerHTML = "Insufficient FT to cover fees";}
+    }
+
+    function processTransfer2(Allowance) { //checks if user gave allowance to the bridge and forwards the request
+      if(Allowance >= amount()){bridgeContract.methods.transfer(amount(), fee(), claimingFee(), to(), tokenAddressFrom()).send({from : accounts[0]});}
+      else{approve(); document.getElementById("status").style.color = "blue"; document.getElementById("status").innerHTML = "Approving funds";}
+    }
+  
 
   
-</head>
 
-<body>
+  async function getFTbalance() {
+    return thisContract.methods.balanceOf(accounts[0]).call();
+  }
 
-  <div id="token-choose">
-    <div id="token-choose-body">
-      <h3 id="select-a-token">Select a token</h3>
-      <img id="close-x" src="assets\img\close-x.png" onclick="hideTokens()">
-      <br/>
-      <hr style="height: 1px; color: aliceblue; margin-top: 35px;"/>
-      <input id="token-input" pla ceholder="Search by name or paste address">
+  async function getBalance() {
+    const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
+    return contract.methods.balanceOf(accounts[0]).call();
+  }
+  async function getAllowance() {
+    const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
+    return contract.methods.allowance(accounts[0], bridge).call();
+  }
 
-      <div id="token-select">
-      </div>
-    </div>
-  </div>
-  <div id="transfer">
+  async function getDecimals() {
+    const contract = new web3.eth.Contract(ERC20abi, token);
+    return contract.methods.decimals().call();
+  }
 
-    <select name="pets" id="bridge-select">
-      <option value="BSCETH">BSC->ETH</option>
-      <option value="ETHBSC">ETH->BSC</option>
-  </select>
-  <br/>
-  <div id="token" onclick="showTokens()">
-    <img  id="token-icon" src="assets/img/BUSD.png"><h6 id="token-name">BUSD</h6>
-    <img id="downArrow" src="assets/img/white-transparent-arrow.png">
-  </div>
+  function approve(){
+    const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
+    contract.methods.approve(bridge, 99999999999999).send({from : accounts[0]}).then(console.log);
+  }
 
-    <input id="to" class="buttom" autocomplete="off">
-    <input id="amount" class="buttom" autocomplete="off">
-    <input id="fee" class="buttom" autocomplete="off">
-    <input id="claimingFee" class="buttom" autocomplete="off">
-    <br/><br/>
-    <center><input id="submit" type="submit" value="Transfer" style="width: 150px;" onclick="transfer()"></center>
-    <br/>
-    <center><h6 id="status"></h6></center>
-	<p style="text-align: center; margin-left: auto; margin-right: auto;"><h8 style="text-align: center;" id="address"></h8></p>
-  </div>
-  <br/>
-  <br/><br/>
+  function check(result) {
+    console.log(result);
+    if(!result){transferInProgress = false;}
+  }
 
+  function getName() {
+    const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
+    return contract.methods.name().call();
+  }
+  var myVar1 = setInterval(getTokenAllowance, 1500);
+  var myVar2 = setInterval(allowanceCheck, 1500);
+  var myVar3 = setInterval(loadData, 1500);
 
+  function getTokenAllowance() {
+    if(tokenAddressFrom() == "0x0000000000000000000000000000000000000000"){allowance = 99999999999999;}
+    else{
+      var contract = tokenAddressFrom();
+      getAllowance().then(result => allowance = result);
+    }
+  }
 
+  function allowanceCheck() {
+    if(allowance < amount()){
+      document.getElementById("submit").value = "Approve";
+      document.getElementById("status").innerHTML = "";
+    }
+    else if(allowance >= amount()){
+      document.getElementById("submit").value = "Transfer";
+      document.getElementById("status").style.color = "green"; document.getElementById("status").innerHTML = "Ready For Transfer";}
+  }
 
+  function loadData() {
+    getName().then(value => document.getElementById("tokenSymbol").innerHTML = value);
+  }
 
+  function showTokens() {
+    document.getElementById("token-choose").style.visibility = "visible";
+  }
+  function hideTokens() {
+    document.getElementById("token-choose").style.visibility = "hidden";
+  }
 
-  <main id="main">
+  function addToken(tokenAddress, symbol, name) {
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="assets/vendor/counterup/counterup.min.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
+    console.log("huh");
+    
+    let div = document.createElement('div');
+    let hr = document.createElement('hr');
+    let img = document.createElement('img');
+    let div1 = document.createElement('div');
+    let div2 = document.createElement('div');
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+    div.id = 'token-token';
+    hr.id = 'token-token-empty';
+    img.id = 'token-token-icon';
+    div1.id = 'token-token-symbol';
+    div2.id = 'token-token-name';
 
-  <script type="text/javascript" src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
-  <script type="text/javascript" src=".\assets\js\bridge.js"></script>
-  <script type="text/javascript" src=".\assets\js\stakingDesign.js"></script>
+    img.src = ".\\assets\\img\\" + symbol + ".png"
+    div1.innerHTML = symbol;
+    div2.innerHTML = name;
 
-</body>
+    div.onclick = function(event) {setToken(tokenAddress, symbol);}
 
-</html>
+    //div.onclick = setToken(tokenAddress, symbol);
+
+    div.appendChild(hr);
+    div.appendChild(img);
+    div.appendChild(div1);
+    div.innerHTML += "<br/>";
+    div.appendChild(div2);
+
+    console.log("wtf");
+    document.getElementById('token-select').appendChild(div);
+    console.log("wtf1");
+
+  }
+
+  function setToken(tokenAddress, symbol) {
+    selectedToken = tokenAddress;
+    selectedTokenSymbol = symbol;
+    document.getElementById('token-icon').src = "assets/img/" + symbol + ".png";
+    document.getElementById('token-name').innerHTML = symbol;
+    document.getElementById('token-choose').style.visibility = "hidden";
+  }
+
+  function loadTokens() {
+    var tokens = readTextFile("assets/Toekns.txt");
+    console.log(tokens);
+  }
+
+  loadTokens();
+
+  function readTextFile(file) {
+    
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+}
