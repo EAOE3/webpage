@@ -158,9 +158,9 @@ ethereum.on('accountsChanged', function getAccounts() {
     const contract = new web3.eth.Contract(ERC20abi, tokenAddressFrom());
     return contract.methods.name().call();
   }
-  var myVar1 = setInterval(getTokenAllowance, 1500);
-  var myVar2 = setInterval(allowanceCheck, 1500);
-  var myVar3 = setInterval(loadData, 1500);
+  //var myVar1 = setInterval(getTokenAllowance, 1500);
+  //var myVar2 = setInterval(allowanceCheck, 1500);
+  //var myVar3 = setInterval(loadData, 1500);
 
   function getTokenAllowance() {
     if(tokenAddressFrom() == "0x0000000000000000000000000000000000000000"){allowance = 99999999999999;}
