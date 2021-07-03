@@ -1,6 +1,8 @@
 var selectedTokenSymbol;
 var tokensSavedData = "";
 
+startTokensLoading();
+
 function showTokens() {
     document.getElementById("token-choose").style.visibility = "visible";
   }
@@ -55,8 +57,6 @@ function showTokens() {
 function startTokensLoading() {
     readTextFile("assets/Tokens.txt");
   }
-
-  startTokensLoading();
   
 function readTextFile(file) {
 
