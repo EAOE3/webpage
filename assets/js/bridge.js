@@ -243,7 +243,7 @@ ethereum.on('accountsChanged', function getAccounts() {
   loadTokens();
 
   function readTextFile(file) {
-    
+
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
     rawFile.onreadystatechange = function ()
@@ -253,9 +253,8 @@ ethereum.on('accountsChanged', function getAccounts() {
             if(rawFile.status === 200 || rawFile.status == 0)
             {
                 var allText = rawFile.responseText;
-                alert(allText);
+                return allText;
             }
         }
     }
-    rawFile.send(null);
 }
