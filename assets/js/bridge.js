@@ -249,6 +249,7 @@ function readTextFile(file) {
 
 function loadTokens(data) {
   var newData = data + "";
-  var tokensData = newData.split(":");
+  console.log(newData);
+  var tokensData = newData.split(':');
   console.log(tokensData[0]); 
 }
