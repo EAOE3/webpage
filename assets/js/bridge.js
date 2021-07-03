@@ -238,7 +238,7 @@ function startTokensLoading() {
     readTextFile("assets/Tokens.txt");
   }
 
-  loadTokens();
+  startTokensLoading();
   
 function readTextFile(file) {
 
