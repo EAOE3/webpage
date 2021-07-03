@@ -261,6 +261,7 @@ function loadTokens(data) {
 
 function search(){
   document.getElementById("token-select").innerHTML = "";
+  console.log(tokensSavedData);
   var tokensData = tokensSavedData.split(':');
   var input = document.getElementById("token-input").value + "";
   console.log(input);
