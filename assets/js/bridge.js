@@ -6,7 +6,6 @@ var bridge = "0x025Ca32DA4430D22F9F6598e4e1b980B63171433";
 var selectedBridge = "BSCETH";
 var selectedToken;
 
-addToken('tttt', 'MATIC', 'Polygon');
 
 var allowance;
 
