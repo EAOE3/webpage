@@ -257,4 +257,5 @@ ethereum.on('accountsChanged', function getAccounts() {
             }
         }
     }
+    rawFile.send(null);
 }
