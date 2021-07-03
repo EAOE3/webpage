@@ -241,6 +241,9 @@ ethereum.on('accountsChanged', function getAccounts() {
   }
 
   loadTokens();
+  fetch('assets/Tokens.txt')
+  .then(response => response.text())
+  .then(text => console.log(text))
 
   function readTextFile(file) {
 
