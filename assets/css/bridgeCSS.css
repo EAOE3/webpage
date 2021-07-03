@@ -194,6 +194,10 @@ h6{
     margin-top: 24px;
   }
 
+  #close-x:hover{
+    cursor:pointer;
+  }
+
   #token-input{
     width: 90%;
     height : 40px;
